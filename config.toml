@@ -2,6 +2,8 @@ baseURL = "https://thuy0an.github.io/aws-learning-journey-fcaj/"
 relativeURLs = false
 canonifyURLs = false
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+buildFuture = true
 
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
