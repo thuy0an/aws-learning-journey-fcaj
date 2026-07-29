@@ -1,1 +1,7 @@
-public/*
+# Local editor and operating-system files
+.vscode/
+.DS_Store
+.hugo_build.lock
+
+# Hugo build output
+public/
