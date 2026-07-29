@@ -26,7 +26,7 @@ Student Information:
 
 &emsp; **Internship Duration:** From 22/06/2026 to 15/08/2026
 
-![Your profile picture](/images/avatar.jpg)
+![Your profile picture](https://thuy0an.github.io/aws-learning-journey-fcaj/images/avatar.jpg)
 
 ### Report Content
 
