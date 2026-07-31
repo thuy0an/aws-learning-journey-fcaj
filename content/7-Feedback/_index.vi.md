@@ -1,44 +1,56 @@
 ---
 title: "Chia sẻ, đóng góp ý kiến"
-date: 2024-01-01
+date: 2026-08-15
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Đánh giá chung về quá trình thực tập tại Bootcamp First Cloud AI Journey (FCAJ)
 
->Tại đây bạn có thể tự do đóng góp ý kiến cá nhân về những trải nghiệm khi tham gia chương trình First Cloud AI Journey, giúp team FCAJ cải thiện những vấn đề còn thiếu sót dựa trên các hạng mục sau:
+## 1. Môi trường học tập và làm việc
 
-### Đánh giá chung
+Trong thời gian tham gia **Bootcamp First Cloud AI Journey (FCAJ)**, em nhận thấy FCAJ là một môi trường học tập chuyên nghiệp và rất thân thiện. quy trình học tập và thực hiện dự án được xây dựng khá rõ ràng, giúp sinh viên làm quen dần với cách làm việc thực tế. Chương trình giúp các bạn sinh viên tiếp cận hơn với các vấn đề của doanh nghiệp, các công nghệ hiện đại mà tại trường chưa có cơ hội được học tập và trải nghiệm.
 
-**1. Môi trường làm việc**  
-Môi trường làm việc rất thân thiện và cởi mở. Các thành viên trong FCAJ luôn sẵn sàng hỗ trợ khi mình gặp khó khăn, kể cả ngoài giờ làm việc. Không gian làm việc gọn gàng, thoải mái, giúp mình tập trung tốt hơn. Tuy nhiên, mình nghĩ có thể bổ sung thêm một số buổi giao lưu hoặc team bonding để mọi người hiểu nhau hơn.
+Điều em ấn tượng nhất là mọi người luôn khuyến khích sự chủ động trong học hỏi và chia sẻ kiến thức. Luôn sẵn sàng dấn thân, trải nghiệm các chương trình, sự kiện học thuật. Khi gặp khó khăn trong quá trình triển khai dự án, em nhận được sự hỗ trợ từ các anh chị và các thành viên trong nhóm. Điều này không chỉ giúp em giải quyết vấn đề mà còn tạo động lực để tiếp tục học hỏi và phát triển bản thân.
 
-**2. Sự hỗ trợ của mentor / team admin**  
-Mentor hướng dẫn rất chi tiết, giải thích rõ ràng khi mình chưa hiểu và luôn khuyến khích mình đặt câu hỏi. Team admin hỗ trợ các thủ tục, tài liệu và tạo điều kiện để mình làm việc thuận lợi. Mình đánh giá cao việc mentor cho phép mình thử và tự xử lý vấn đề thay vì chỉ đưa đáp án.
+## 2. Sự hỗ trợ của Mentor và Team Admin
 
-**3. Sự phù hợp giữa công việc và chuyên ngành học**  
-Công việc mình được giao phù hợp với kiến thức mình đã học ở trường, đồng thời mở rộng thêm những mảng mới mà mình chưa từng được tiếp cận. Nhờ vậy, mình vừa củng cố kiến thức nền tảng, vừa học thêm kỹ năng thực tế.
+Trong suốt quá trình thực tập, em nhận được sự hướng dẫn tận tình từ các anh chị. Khi gặp khó khăn trong việc triển khai dịch vụ AWS hoặc thiết kế kiến trúc hệ thống, các anh chị luôn sẵn sàng giải thích nguyên nhân của vấn đề và hướng dẫn cách để tìm ra giải pháp.
 
-**4. Cơ hội học hỏi & phát triển kỹ năng**  
-Trong quá trình thực tập, mình học được nhiều kỹ năng mới như sử dụng công cụ quản lý dự án, kỹ năng làm việc nhóm, và cả cách giao tiếp chuyên nghiệp trong môi trường công ty. Mentor cũng chia sẻ nhiều kinh nghiệm thực tế giúp mình định hướng tốt hơn cho sự nghiệp.
+Các anh chị mentor cũng chia sẻ nhiều kinh nghiệm thực tế về phát triển, vận hành hệ thống trên nền tảng Cloud và định hướng nghề nghiệp. Nhờ đó, em có cái nhìn rõ hơn về công việc của một Cloud Engineer và những kỹ năng cần tiếp tục học hỏi, phát triển.
 
-**5. Văn hóa & tinh thần đồng đội**  
-Văn hóa công ty rất tích cực: mọi người tôn trọng lẫn nhau, làm việc nghiêm túc nhưng vẫn vui vẻ. Khi có dự án gấp, mọi người cùng nhau cố gắng, hỗ trợ không phân biệt vị trí. Điều này giúp mình cảm thấy mình là một phần của tập thể, dù chỉ là thực tập sinh.
+Bên cạnh đó, Team Admin hỗ trợ nhanh chóng trong việc cung cấp thông báo lịch học, tổ chức sự kiện và giải đáp các vấn đề liên quan đến chương trình. Sự hỗ trợ này giúp em tập trung hơn vào việc học và thực hiện dự án.
 
-**6. Chính sách / phúc lợi cho thực tập sinh**  
-Công ty có hỗ trợ phụ cấp thực tập và tạo điều kiện về thời gian linh hoạt khi cần thiết. Ngoài ra, việc được tham gia các buổi đào tạo nội bộ là một điểm cộng lớn.
+## 3. Sự phù hợp giữa nội dung thực tập và chuyên ngành học
 
+Nội dung thực tập tại FCAJ rất phù hợp với chuyên ngành Công nghệ Thông tin mà em đang theo học, đồng thời phù hợp với định hướng phát triển nghề nghiệp trong nhiều năm tới. Nếu ở trường em chủ yếu được trang bị kiến thức nền tảng về lập trình, cơ sở dữ liệu và các bài toán quản lý, tại FCAJ đã giúp em tiếp cận trực tiếp với những công nghệ, những bài toán thực tế trong doanh nghiệp đang diễn ra.
 
-### Một số câu hỏi khác
-- Điều bạn **hài lòng nhất** trong thời gian thực tập?  
-- Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
-- Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
+Trong quá trình thực tập, em được tìm hiểu và thực hành với các dịch vụ AWS như CloudFormation, EC2, S3, IAM, RDS, ECS, ECR, Application Load Balancer, CloudWatch, Route53, CloudFront, Bedrock, AWS Lambda... Việc trực tiếp triển khai và cấu hình các dịch vụ này giúp em hiểu rõ hơn cách xây dựng, vận hành và giám sát hệ thống.
 
+Ngoài ra, em còn được tìm hiểu về **AWS Well-Architected Framework**, Multi-tier Architecture, quy trình CI/CD và các nguyên tắc tối ưu hệ thống. Đây là những kiến thức có tính ứng dụng cao, giúp bổ sung hiệu quả cho nội dung được học ở trường.
 
-### Đề xuất & mong muốn
-- Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
-- Bạn có muốn tiếp tục chương trình này trong tương lai?
-- Góp ý khác (tự do chia sẻ):
+## 4. Cơ hội học hỏi và phát triển kỹ năng
+
+FCAJ mang lại cho em nhiều cơ hội học hỏi ngoài kiến thức chuyên môn về AWS Cloud. Thông qua dự án **NeonFoodMap – Phần mềm thuyết minh tự động Phố ẩm thực Vĩnh Khánh**, em học được cách lập kế hoạch công việc, phân chia nhiệm vụ, phối hợp với các thành viên và quản lý tiến độ để hoàn thành công việc đúng thời hạn.
+
+Khi gặp lỗi trong quá trình triển khai, em được rèn luyện cách phân tích nguyên nhân, tìm kiếm tài liệu kỹ thuật và từng bước khắc phục thay vì phụ thuộc hoàn toàn vào mentor. Bên cạnh đó, kỹ năng đọc tài liệu tiếng Anh, trình bày ý tưởng, xây dựng sơ đồ kiến trúc AWS và báo cáo kết quả dự án của em cũng được cải thiện.
+
+## 5. Văn hóa và tinh thần đồng đội
+
+Điều em yêu thích tại FCAJ là văn hóa chia sẻ kiến thức và tinh thần hỗ trợ giữa các thành viên. Mỗi người đều có trách nhiệm với phần việc của mình, đồng thời sẵn sàng trao đổi và hỗ trợ thành viên khác khi cần thiết.
+
+Mentor luôn tạo điều kiện để mọi người trình bày ý tưởng, thảo luận và đóng góp ý kiến. Dù thời gian tham gia FCAJ không quá dài, em vẫn cảm nhận được sự đoàn kết và tính chuyên nghiệp của cộng đồng. Đây là một trong những điểm khiến em có ấn tượng tốt về chương trình.
+
+## Cảm nhận cá nhân sau quá trình thực tập
+
+Sau thời gian tham gia Bootcamp FCAJ, em nhận thấy đây là một trải nghiệm có ý nghĩa đối với quá trình học tập và định hướng nghề nghiệp. Em hài lòng vì được thực hành trực tiếp trên Amazon Web Services, tham gia xây dựng dự án cùng các thành viên trong nhóm và áp dụng kiến thức vào triển khai một hệ thống thực tế.
+
+Bên cạnh kiến thức chuyên môn, em còn học được các kỹ năng quan trọng như làm việc nhóm, quản lý tiến độ, tìm kiếm tài liệu kỹ thuật, trình bày ý tưởng và giải quyết vấn đề. Những trải nghiệm này giúp em tự tin hơn khi chuẩn bị bước vào môi trường làm việc sau khi tốt nghiệp.
+
+Theo quan điểm cá nhân, chương trình đã có lộ trình học rõ ràng và sự hỗ trợ tận tình từ đội ngũ mentor. Đã có rất nhiều các buổi chia sẻ từ Cloud Engineer, Solution Architect đang làm việc tại doanh nghiệp mang lại rất nhiều kiến thức, kinh nghiệm cho các bạn sinh viên học hỏi và tiếp thu.
+
+Em sẵn sàng giới thiệu Bootcamp FCAJ khi các bạn sinh viên quan tâm đến Cloud Computing, DevOps hoặc AI, vì FCAJ là môi trường học tập chất lượng, nội dung thực tiễn , và có sự hỗ trợ tích cực từ cộng đồng.
+
+Trong thời gian tới, em mong muốn tiếp tục tham gia các chương trình chuyên sâu của FCAJ về AWS Solution Architecture, DevOps trên AWS để nâng cao kiến thức và kỹ năng. Em cũng hy vọng có cơ hội đồng hành cùng cộng đồng FCAJ trong các hoạt động học thuật và dự án thực tế.
+
+Em xin gửi lời cảm ơn đến các anh chị mentor, Team Admin và Ban tổ chức Bootcamp First Cloud AI Journey đã tận tình hướng dẫn, hỗ trợ và tạo điều kiện để em học tập trong môi trường chuyên nghiệp. Khoảng thời gian tại FCAJ đã giúp em trưởng thành hơn về kiến thức chuyên môn, kỹ năng làm việc và tư duy giải quyết vấn đề.

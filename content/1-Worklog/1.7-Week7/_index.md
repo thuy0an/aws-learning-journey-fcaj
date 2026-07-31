@@ -1,57 +1,44 @@
 ---
 title: "Week 7 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-08-09
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 7 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Complete the CI/CD pipeline with GitHub Actions.
+* Automate image builds and deployments.
+* Test system operation after each update.
+* Deploy the system with the CloudFront CDN.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Completed This Week:
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Review Dockerfiles, Docker Compose, Amazon ECR, and the shared application configuration.<br />- Deploy the CloudFront CDN for the application. | 03/08/2026 | 03/08/2026 | [Amazon CloudFront Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) |
+| 3 | - Create a GitHub Actions workflow to check out, build, and validate source code.<br />- Configure AWS authentication, update the ECS task definition, and push images to ECR. | 04/08/2026 | 04/08/2026 | [Configuring OIDC with AWS](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws) |
+| 4 | - Test the commit → build → deploy workflow.<br />- Monitor ECS rollouts and CloudWatch Logs, and fix issues. | 05/08/2026 | 05/08/2026 | - |
+| 5 | - Fix application issues in the data flows. | 06/08/2026 | 06/08/2026 | - |
+| 6 | - Update documentation and finalize the team's architecture. | 07/08/2026 | 07/08/2026 | - |
 
 ### Week 7 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Deployment configuration:
 
-* Successfully created and configured an AWS Free Tier account.
+  * Reviewed and synchronized Dockerfiles, Docker Compose, environment variables, and Amazon ECR configuration.
+  * Updated the ECS task definition to support automated deployment.
+* CI/CD pipeline:
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+  * Created a GitHub Actions workflow to automatically validate source code, build container images, and push them to Amazon ECR.
+  * Automated ECS task definition updates and deployment of new versions to the ECS service after each source-code update.
+* System testing and monitoring:
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+  * Tested the complete flow: commit, build, image push, and deployment to ECS.
+  * Monitored ECS rollouts, CloudWatch Logs, and Application Load Balancer health checks.
+  * Identified and resolved issues related to configuration, IAM permissions, containers, and application data flows.
+* Documentation completion:
 
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+  * Updated deployment and system-testing documentation.
+  * Finalized the architecture diagram and added GitHub Actions, Amazon ECR, Amazon ECS, and CloudFront.

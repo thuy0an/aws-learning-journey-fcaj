@@ -1,108 +1,177 @@
 ---
-title: "Bản đề xuất"
-date: 2024-01-01
+title: "Proposal"
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# NeonFoodMap – Phần mềm thuyết minh tự động Phố ẩm thực Vĩnh Khánh
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+## 1. Tổng quan dự án
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+Dự án xây dựng nền tảng thuyết minh tự động dành cho du khách tại **Phố ẩm thực Vĩnh Khánh, Quận 4, TP. Hồ Chí Minh**. Hệ thống hỗ trợ khám phá các điểm ẩm thực và văn hóa qua nội dung thuyết minh đa phương tiện, được kích hoạt theo vị trí địa lý hoặc mã QR.
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+| Tiêu chí              | Giá trị                                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Loại dự án           | Nền tảng thuyết minh tự động và khám phá du lịch số                                               |
+| Khu vực triển khai    | Phố ẩm thực Vĩnh Khánh, Quận 4, TP. Hồ Chí Minh                                                      |
+| Đối tượng sử dụng | Du khách, đối tác kinh doanh địa phương và quản trị viên                                         |
+| Công nghệ ứng dụng  | Frontend trên S3/CloudFront<br />Backend container trên Amazon ECS Fargate, Amazon RDS MySQL và Amazon S3 |
+| Hạ tầng AWS           | VPC triển khai trên hai Availability Zone, ECS Auto Scaling và RDS Multi-AZ                               |
+| Vận hành              | CI/CD với Docker, GitHub Actions, Amazon ECR, CloudWatch và Amazon SNS                                     |
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+## 2. Mục tiêu
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+### 2.1 Mục tiêu dự án
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+| # | Mục tiêu                                                                                        | Chỉ số đánh giá                                                                   |
+| - | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 1 | Cung cấp ứng dụng thuyết minh tự động theo vị trí hoặc QR code.                         | Người dùng có thể truy cập POI và phát nội dung đa phương tiện.           |
+| 2 | Quản lý tập trung POI, nội dung âm thanh, hình ảnh, thực đơn và thông tin đối tác. | Dữ liệu được quản lý qua API và giao diện quản trị.                         |
+| 3 | Triển khai hệ thống AWS có khả năng mở rộng, bảo mật và giám sát.                    | ECS Auto Scaling, RDS Multi-AZ, private subnet, CloudWatch và SNS được cấu hình. |
+| 4 | Tự động hóa quy trình phát hành.                                                           | Image được build, đẩy lên ECR và triển khai ECS qua GitHub Actions.            |
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+### 2.2 Giá trị mang lại
 
-![IoT Weather Station Architecture](https://thuy0an.github.io/aws-learning-journey-fcaj/images/2-Proposal/edge_architecture.jpeg)
+- **Nâng cao trải nghiệm du khách:** Cung cấp nội dung thuyết minh linh hoạt, đa phương tiện và dễ tiếp cận.
+- **Hỗ trợ hoạt động địa phương:** Tạo kênh số để đối tác giới thiệu thực đơn, ưu đãi và thông tin dịch vụ.
+- **Vận hành tin cậy:** Tách biệt các lớp ứng dụng, dữ liệu và mạng; hỗ trợ giám sát và cảnh báo tập trung.
+- **Sẵn sàng mở rộng:** Kiến trúc container và hạ tầng đa Availability Zone có thể đáp ứng lượng truy cập tăng lên.
 
-![IoT Weather Platform Architecture](https://thuy0an.github.io/aws-learning-journey-fcaj/images/2-Proposal/platform_architecture.jpeg)
+## 3. Vấn đề giải quyết
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+**Vấn đề 1 — Chi phí nhân lực cao:** Việc thuyết minh, hướng dẫn và cập nhật nội dung theo cách thủ công cần nhiều nhân sự, khó duy trì liên tục và khó đáp ứng nhu cầu đa ngôn ngữ của du khách. Các hộ kinh doanh nhỏ cũng khó đầu tư riêng cho nhân sự giới thiệu, truyền thông và hỗ trợ khách hàng.
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+**Vấn đề 2 — Chi phí và độ phức tạp của hạ tầng:** Một hệ thống phục vụ nhiều người dùng cần có khả năng mở rộng, lưu trữ media, sao lưu dữ liệu, giám sát và bảo mật. Nếu triển khai không phù hợp, chi phí vận hành hạ tầng có thể tăng cao hoặc hệ thống không đáp ứng tốt trong thời điểm có lượng truy cập lớn.
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+**Vấn đề 3 — Quản lý nội dung phân tán:** Thông tin về POI, bài thuyết minh, hình ảnh, âm thanh, thực đơn và ưu đãi thường được quản lý rời rạc. Điều này gây khó khăn cho việc cập nhật đồng bộ, kiểm soát chất lượng nội dung và duy trì trải nghiệm nhất quán cho du khách.
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+### 3.1 Phạm vi chức năng
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+- Hiển thị bản đồ và danh sách POI tại Phố ẩm thực Vĩnh Khánh.
+- Kích hoạt bài thuyết minh bằng geofencing hoặc quét QR code; hỗ trợ phát âm thanh và hiển thị hình ảnh liên quan.
+- Hỗ trợ nội dung đa ngôn ngữ, lưu lịch sử trải nghiệm và đồng bộ dữ liệu khi có kết nối.
+- Cung cấp giao diện cho đối tác cập nhật thực đơn, ưu đãi và theo dõi thông tin cơ bản về lượt tiếp cận.
+- Cung cấp giao diện quản trị để quản lý POI, nội dung, người dùng và theo dõi tình trạng hệ thống.
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+## 4. Kiến trúc triển khai trên AWS
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+Hệ thống được triển khai trên **Amazon Web Services (AWS)** theo kiến trúc Multi-tier Architecture và định hướng theo **AWS Well-Architected Framework**. Toàn bộ hạ tầng chạy trong **Amazon VPC (10.0.0.0/16)** tại Region **ap-southeast-1 (Singapore)**, trải rộng trên hai Availability Zone để tăng khả năng sẵn sàng và chịu lỗi.
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+Hệ thống phân phối Frontend qua **Amazon S3** và  **CloudFront** , điều hướng API request qua **Application Load Balancer** tới backend **Amazon ECS Fargate** và lưu trữ trên  **Amazon RDS MySQL** . **GitHub Actions, ECR, CloudWatch** và **SNS** thực hiện CI/CD, giám sát và cảnh báo tự động
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+### 4.1 Sơ đồ kiến trúc
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+#### Kiến trúc tổng thể
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+{{< event-image src="images/2-Proposal/platform_architecture.jpg" alt="Kiến trúc tổng thể nền tảng trên AWS" >}}
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+Kiến trúc triển khai được xây dựng trên hai Availability Zone để cải thiện tính sẵn sàng:
+
+- **Phân phối frontend:** Nội dung tĩnh được lưu trên **Amazon S3 Static Website** và phân phối qua **Amazon CloudFront** để tăng tốc độ truy cập cho người dùng.
+- **Xử lý API:** CloudFront chuyển các yêu cầu API đến ALB. ALB định tuyến lưu lượng đến các ECS Fargate task trong private subnet và Auto Scaling Group phân bổ trên hai Availability Zone.
+- **Cơ sở dữ liệu:** **Amazon RDS MySQL** triển khai Multi-AZ, gồm primary database và standby database đồng bộ nhằm nâng cao khả năng chịu lỗi.
+- **CI/CD:** Đẩy mã nguồn lên GitHub. **GitHub Actions** dùng OIDC để xác thực với **AWS STS**, build container image và push lên **Amazon ECR**; ECS sau đó pull image và triển khai phiên bản mới.
+- **Bảo mật và hạ tầng:** **AWS IAM** quản lý quyền truy cập, **AWS Secrets Manager** lưu trữ thông tin nhạy cảm, và **AWS CloudFormation** chuẩn hóa việc cung cấp và thay đổi hạ tầng.
+- **Quan sát hệ thống:** **Amazon CloudWatch** thu thập log và metric; log có thể được lưu trữ lâu dài trên S3. **Amazon SNS** gửi cảnh báo đến email.
+
+#### Kiến trúc kết nối dịch vụ
+
+{{< event-image src="images/2-Proposal/edge_architecture.jpg" alt="Kiến trúc biên và kết nối dịch vụ trên AWS" >}}
+
+- Người dùng truy cập ứng dụng qua **Internet Gateway** và **Application Load Balancer (ALB)**.
+- Frontend và backend được đóng gói thành container, vận hành bằng **Amazon ECS Fargate** trong ECS Cluster.
+- **AWS Cloud Map** kết hợp **Amazon Route 53** hỗ trợ dịch vụ giao tiếp nội bộ giữa các thành phần ứng dụng.
+
+### 4.2 Các thành phần kiến trúc
+
+| Tầng                  | Dịch vụ                                    | Vai trò                                                                                      |
+| ---------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Edge                   | Amazon CloudFront                            | Phân phối nội dung từ S3 và chuyển các yêu cầu API đến Application Load Balancer. |
+| Frontend               | Amazon S3 Static Website                     | Lưu trữ và cung cấp tài nguyên của giao diện ứng dụng.                              |
+| Compute                | Application Load Balancer                    | Nhận yêu cầu API, thực hiện health check và phân phối truy cập đến ECS service.    |
+| Compute                | Amazon ECS Fargate                           | Chạy các container backend; mở rộng theo nhu cầu với Auto Scaling.                     |
+| Service discovery      | AWS Cloud Map và Amazon Route 53            | Hỗ trợ dịch vụ nội bộ giao giữa các thành phần trong ECS Cluster.                   |
+| CI/CD                  | GitHub Actions, AWS STS và Amazon ECR       | Xác thực OIDC, build container image, lưu image và triển khai phiên bản mới cho ECS.  |
+| Data                   | Amazon RDS MySQL                             | Lưu trữ dữ liệu nghiệp vụ.                                                              |
+| Mạng                  | Amazon VPC, Internet Gateway và NAT Gateway | Tách public/private subnet; cung cấp kết nối Internet.                                    |
+| Security               | AWS IAM và AWS Secrets Manager              | Phân quyền IAM role và bảo vệ thông tin.                                                |
+| Infrastructure as Code | AWS CloudFormation                           | Chuẩn hóa việc khởi tạo và thay đổi hạ tầng.                                        |
+| Observability          | Amazon CloudWatch, Amazon SNS và S3 Logs    | Thu thập log, metric, tạo alert và lưu trữ log.                                         |
+|                        |                                              |                                                                                               |
+
+### 4.3 AWS Well-Architected Framework
+
+| Trụ cột              | Giải pháp áp dụng                                                           |
+| ---------------------- | ------------------------------------------------------------------------------- |
+| Operational Excellence | GitHub Actions CI/CD, CloudFormation, CloudWatch.                               |
+| Security               | IAM Least Privilege, Secrets Manager, KMS, Private Subnets                      |
+| Reliability            | Application Load Balancer, ECS Auto Scaling, RDS Multi-AZ, VPC Endpoint for S3. |
+| Performance Efficiency | CloudFront, ECS Fargate AutoScaling, RDS Optimization.                         |
+| Cost Optimization      | ECS Fargate Auto Scaling, S3 Lifecycle.                                         |
+| Sustainability         | Scale theo nhu cầu, tắt môi trường dev ngoài giờ                        |
+
+## 5. Timeline
+
+| Giai đoạn                               | Thời gian theo Worklog | Nội dung triển khai                                                                                                                                                                                                        |
+| ----------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Nền tảng và thiết kế              | Tuần 1–3              | Thiết lập tài khoản AWS, IAM, Budgets và kiến thức mạng; nghiên cứu EC2, S3, RDS, CloudWatch, Auto Scaling, Backup; hoàn thiện kiến trúc dự án và lựa chọn dịch vụ AWS.                                 |
+| 2. Phát triển và chuẩn bị hạ tầng  | Tuần 4                 | Lập kế hoạch Agile; xây dựng backend cơ bản, thiết kế cơ sở dữ liệu RDS MySQL, chuẩn bị Dockerfile, CloudFormation, IAM role/policy và cấu hình bảo mật cần thiết.                                     |
+| 3. Container hóa và triển khai staging | Tuần 5–6              | Hoàn thiện frontend, backend và API; build image, đẩy image lên ECR; triển khai ECS Fargate, ALB, RDS, Auto Scaling; cấu hình CloudWatch, AWS Budgets, SNS và kiểm thử trên môi trường staging.              |
+| 4. Tự động hóa triển khai            | Tuần 7                 | Rà soát Dockerfile/Docker Compose; thiết lập GitHub Actions với OIDC, tự động build, push image lên ECR, cập nhật ECS task definition và theo dõi ECS rollout.                                                  |
+| 5. Phân phối nội dung và hoàn thiện | Tuần 7–8              | Triển khai CloudFront cho frontend tĩnh, kiểm tra DNS và khả năng truy cập; rà soát chi phí, bảo mật, hệ thống cảnh báo; kiểm thử tổng thể, hoàn thiện tài liệu, sơ đồ kiến trúc và báo cáo. |
+
+## 6. Ước tính ngân sách
+
+### 6.1 Chi phí sử dụng và chi phí tối đa dự kiến
+
+| Dịch vụ                          | Cấu hình theo kiến trúc hiện tại                                                                                                 |                          Chi phí/tháng | Chi phí ước tính tối đa/tháng |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------: | -----------------------------------: |
+| Amazon ECS (Fargate)               | Chạy backend container trên ECS; Production dùng 2 tasks trên 2 AZ với Auto Scaling, ví dụ 0,5 vCPU và 1 GB RAM cho mỗi task. |                         $9,86 | ~$20–35 |                                      |
+| Amazon RDS MySQL                   | Production dùng Multi-AZ: Primary ở AZ A và Standby ở AZ B.                                                                        |                            $11,78 | ~$50 |                                      |
+| NAT Gateway, ALB và Amazon VPC    | Hai NAT Gateway và ALB cho Production; dashboard hiện gộp một phần chi phí vào**EC2 – Other** và **VPC**.         |                        $32,80 | ~$82–84 |                                      |
+| Amazon CloudFront                  | Phân phối static web từ S3 và định tuyến API; giả định khoảng 100 GB truyền dữ liệu.                                     | ~$4 |                                ~$8 |                                      |
+| Amazon S3                          | Lưu static web, media và logs; giả định khoảng 50 GB.                                                                            | ~$2 |                                ~$2 |                                      |
+| Amazon CloudWatch và SNS          | Flow Logs, container logs, metrics, alarms và gửi email cảnh báo.                                                                  |                           $5,61 | ~$5–6 |                                      |
+| AWS Secrets Manager và Amazon ECR | Lưu secrets và container images.                                                                                                     | ~$2 |                                ~$3 |                                      |
+| **Tổng chi phí/tháng**    |                                                                                                                                        |  **$68,2** | **~$170–190** |                                      |
+
+### 6.2 Chiến lược tối ưu chi phí
+
+- Cấu hình **AWS Budgets** và cảnh báo qua SNS ở các ngưỡng 50%, 80% và 100% ngân sách tháng.
+- Theo dõi chi phí NAT Gateway, ECS Fargate, RDS và CloudWatch là các nhóm chi phí chính.
+- Chỉ duy trì số lượng ECS task cần thiết; sử dụng Auto Scaling để tránh cấp phát tài nguyên nhàn rỗi.
+- Xóa hoặc dừng các tài nguyên không còn sử dụng trong môi trường staging sau khi hoàn tất kiểm thử.
+- Sử dụng CloudFront cache cho static web và media để giảm lưu lượng đến origin; cân nhắc S3 Lifecycle khi dung lượng log hoặc media tăng lên.
+
+## 7. Đánh giá rủi ro
+
+### 7.1 Ma trận rủi ro
+
+| Rủi ro                                             | Khả năng  | Ảnh hưởng |
+| --------------------------------------------------- | ----------- | ------------ |
+| Chi phí AWS vượt dự báo                        | Trung bình | Trung bình  |
+| ECS task hoặc container gặp lỗi                  | Trung bình | Trung bình  |
+| Sự cố cơ sở dữ liệu                           | Thấp       | Cao          |
+| Lộ thông tin nhạy cảm                           | Thấp       | Rất cao     |
+| Lưu lượng tăng đột biến                      | Trung bình | Trung bình  |
+| Log hoặc cảnh báo không đầy đủ              | Trung bình | Trung bình  |
+| Lỗi trong quá trình triển khai phiên bản mới | Trung bình | Trung bình  |
+
+### 7.2 Kế hoạch dự phòng và ứng phó
+
+- Xử lý cảnh báo chi phí ngay khi chạm ngưỡng ngân sách; xác định dịch vụ phát sinh và dừng hoặc điều chỉnh tài nguyên không cần thiết.
+- Khi API hoặc container lỗi, kiểm tra CloudWatch Logs, trạng thái ALB health check và ECS task definition trước khi rollback hoặc triển khai bản sửa.
+- Khi có sự cố dữ liệu, ưu tiên bảo vệ dữ liệu, đánh giá ảnh hưởng và thực hiện khôi phục theo quy trình backup/restore đã kiểm thử.
+- Khi phát hiện dấu hiệu lộ thông tin xác thực, thu hồi hoặc xoay vòng secret, kiểm tra IAM permissions và rà soát lịch sử triển khai.
+
+## 8. Kết quả kỳ vọng
+
+* **Cải tiến kỹ thuật:** Số hóa việc thuyết minh và quản lý POI, thay thế quy trình cung cấp thông tin thủ công bằng nền tảng đa phương tiện có thể giám sát, mở rộng và triển khai tự động trên AWS.
+* **Giá trị dài hạn:** Hình thành nền tảng nội dung và dữ liệu có thể tái sử dụng cho các khu vực du lịch khác; đồng thời tạo cơ sở để mở rộng phân tích hành vi người dùng, nội dung đa ngôn ngữ và hợp tác với các hộ kinh doanh địa phương trong tương lai.
+
+### Tài liệu tham khảo
+
+- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
+- [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/)
+- [AWS Documentation](https://docs.aws.amazon.com/)

@@ -1,57 +1,39 @@
 ---
 title: "Week 4 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-07-19
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 4 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Plan the project's Agile sprint.
+* Build the basic backend and learn about Docker and CI/CD.
+* Deploy the project's infrastructure services across multiple Availability Zones.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Completed This Week:
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Create the project architecture diagram.<br />- **Practice:** Configure IAM policies and roles to allow the application to access AWS services. | 13/07/2026 | 13/07/2026 | [Granting authorization to access AWS services](https://000048.awsstudygroup.com/)<br /><br />[Limitation of user rights with IAM Permission](https://000030.awsstudygroup.com/) |
+| 3 | - Plan the Agile sprint.<br />- **Practice:** Use tags and resource groups to manage resources. | 14/07/2026 | 14/07/2026 | [Manage Resources Using Tags and Resource Groups](https://000027.awsstudygroup.com/) |
+| 4 | - Learn about Docker and CI/CD.<br />- Prepare CloudFormation templates for IAM users, roles, and policies.<br />- **Practice:** Manage account and project security with AWS Security Hub. | 15/07/2026 | 15/07/2026 | [AWS Security Hub](https://000018.awsstudygroup.com/)<br /><br />[Docker Build Documentation](https://docs.docker.com/build/ci)<br /><br />[AWS CloudFormation](https://000037.awsstudygroup.com/) |
+| 5 | - Create an RDS MySQL database and design the database schema.<br />- Learn how to deploy the project with Docker and CI/CD. | 16/07/2026 | 16/07/2026 | [Docker Build Documentation](https://docs.docker.com/build/ci) |
+| 6 | - **Practice:** Encrypt data with AWS KMS, verify encryption, and query data with Amazon Athena.<br />- Finalize the project configuration. | 17/07/2026 | 17/07/2026 | [Encrypt at rest with AWS KMS](https://000033.awsstudygroup.com/) |
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Resource management and classification:
 
-* Successfully created and configured an AWS Free Tier account.
+  * Used tags to label and classify AWS resources, and AWS Resource Groups to group resources by tags for automated bulk management.
+  * Configured AWS CloudTrail to record system activity and used Amazon Athena to query and analyze log data.
+* Security:
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+  * Implemented IAM permission boundaries to define the maximum permissions available to users and groups.
+  * Used AWS Security Hub to consolidate security findings from services such as GuardDuty, Inspector, and Macie into one dashboard and run automated checks.
+  * Practiced protecting data at rest by configuring AWS KMS encryption for S3 data.
+* Applications and containerization:
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+  * Used Docker to create isolated application environments and reduce issues caused by differences between local and server environments.
+  * Integrated Docker into the Continuous Integration process for consistent, automated code testing and integration.

@@ -7,16 +7,32 @@ pre: " <b> 1.8. </b> "
 ---
 ### Mục tiêu tuần 8:
 
-
+* Kiểm soát vận hành, chi phí và bảo mật
+* Hoàn thiện workshop và tài liệu dự án, báo cáo thực tập
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| ---- | ----------- | ---------------- | ------------------ | ----------------- |
-| 2    |             | 11/08/2025       | 11/08/2025         |                   |
-| 3    |             | 12/08/2025       | 12/08/2025         |                   |
-| 4    |             | 13/08/2025       | 13/08/2025         |                   |
-| 5    |             | 14/08/2025       | 15/08/2025         |                   |
-| 6    |             | 15/08/2025       | 15/08/2025         |                   |
+| Thứ | Công việc                                                                                       | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                                                                                 |
+| ---- | ------------------------------------------------------------------------------------------------- | ---------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| 2    | - Rà soát AWS Cost Explorer/Budgets<br />- Cập nhật kiến trúc hệ thống bản hoàn chỉnh | 11/08/2026       | 11/08/2026         | -                                                                                                                 |
+| 3    | -Kiểm tra hoàn thiện CloudFront, DNS và khả năng truy cập hệ thống                       | 12/08/2026       | 12/08/2026         | [Amazon CloudFront Document](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) |
+| 4    | -Hoàn thiện workshop, kiểm tra chức năng dự án                                             | 13/08/2026       | 13/08/2026         | -                                                                                                                 |
+| 5    | -Hoàn thiện worklog, proposal, thông tin dự án                                               | 14/08/2026       | 15/08/2026         | -                                                                                                                 |
+| 6    | -Hoàn thiện worklog, proposal, thông tin dự án                                               | 15/08/2026       | 15/08/2026         | -                                                                                                                 |
 
 ### Kết quả đạt được tuần 8:
+
+* Kiểm soát vận hành và chi phí:
+
+  * Rà soát chi phí sử dụng tài nguyên thông qua AWS Cost Explorer và AWS Budgets.
+  * Rà soát quyền truy cập, cấu hình bảo mật và tình trạng hoạt động của các dịch vụ AWS.
+* Hoàn thiện hệ thống:
+
+  * Kiểm tra cấu hình CloudFront, DNS, Application Load Balancer và khả năng truy cập ứng dụng.
+  * Kiểm thử lại các chức năng chính, luồng dữ liệu và khả năng tích hợp giữa Frontend và Backend.
+  * Khắc phục các lỗi còn tồn tại và hoàn thiện sơ đồ kiến trúc hệ thống.
+* Hoàn thiện tài liệu:
+
+  * Hoàn thiện nội dung workshop và tài liệu hướng dẫn triển khai hệ thống.
+  * Cập nhật worklog, proposal và các thông tin liên quan đến dự án.
+  * Tổng hợp kết quả thực tập và hoàn thiện báo cáo thực tập.

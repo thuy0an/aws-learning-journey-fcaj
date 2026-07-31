@@ -5,36 +5,32 @@ weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
+Trong suốt thời gian thực tập tại **BOOTCAMP FIRST CLOUD AI JOURNEY (FCAJ)**, từ **22/06/2026** đến **15/08/2026**, em đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã học trên giảng đường vào môi trường làm việc và học tập thực tế. Đây là khoảng thời gian giúp em tiếp cận gần hơn với quy trình phát triển hệ thống trên nền tảng điện toán đám mây, đồng thời hiểu rõ hơn về công việc của một kỹ sư Cloud trong doanh nghiệp.
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+Trong quá trình tham gia Bootcamp, em cùng các thành viên trong nhóm thực hiện dự án **NeonFoodMap – Phần mềm thuyết minh tự động Phố ẩm thực Vĩnh Khánh**. Dự án được triển khai trên Amazon Web Services (AWS); em tham gia tìm hiểu yêu cầu, thiết kế kiến trúc hệ thống, triển khai kế hoạch phát triển dự án và cấu hình các dịch vụ như IAM, RDS, ECS, ECR, CI/CD, ALB, CloudWatch, Cost Monitoring và CloudFront. Em cũng tham gia xây dựng tài liệu dự án, hoàn thiện sơ đồ kiến trúc hệ thống và kiểm thử.
 
-Trong suốt thời gian thực tập tại **[Tên công ty/tổ chức]** từ **[ngày bắt đầu]** đến **[ngày kết thúc]**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.  
-Tôi đã tham gia **[mô tả ngắn gọn dự án hoặc công việc chính]**, qua đó cải thiện kỹ năng **[liệt kê kỹ năng: lập trình, phân tích, viết báo cáo, giao tiếp…]**.  
+Thông qua quá trình thực hiện dự án, em đã cải thiện kiến thức về Cloud Computing, kỹ năng triển khai dịch vụ AWS, đọc hiểu tài liệu kỹ thuật, thiết kế kiến trúc theo AWS Well-Architected Framework, làm việc nhóm, quản lý tiến độ, trình bày báo cáo và giải quyết các vấn đề phát sinh trong quá trình triển khai.
 
-Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy, và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.
+Trong suốt thời gian thực tập, em luôn cố gắng hoàn thành nhiệm vụ đúng tiến độ, chủ động nghiên cứu tài liệu chính thức của AWS khi gặp khó khăn và tích cực trao đổi với các thành viên trong nhóm để tìm ra giải pháp phù hợp. Mặc dù vẫn còn nhiều kiến thức cần tiếp tục học hỏi, em luôn giữ tinh thần cầu tiến và sẵn sàng tiếp nhận góp ý để hoàn thiện bản thân.
 
-Để phản ánh một cách khách quan quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
+Để nhìn nhận một cách khách quan về quá trình thực tập, em xin tự đánh giá bản thân theo các tiêu chí sau:
 
-
-| STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
+| STT | Tiêu chí                                       | Mô tả                                                                                                                | Tốt | Khá | Trung bình |
+| --- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ---- | ---- | ----------- |
 | 1   | **Kiến thức và kỹ năng chuyên môn** | Hiểu biết về ngành, áp dụng kiến thức vào thực tế, kỹ năng sử dụng công cụ, chất lượng công việc | ✅   | ☐   | ☐          |
-| 2   | **Khả năng học hỏi**                | Tiếp thu kiến thức mới, học hỏi nhanh                                                            | ☐   | ✅   | ☐          |
-| 3   | **Chủ động**                        | Tự tìm hiểu, nhận nhiệm vụ mà không chờ chỉ dẫn                                                  | ✅   | ☐   | ☐          |
-| 4   | **Tinh thần trách nhiệm**           | Hoàn thành công việc đúng hạn, đảm bảo chất lượng                                                | ✅   | ☐   | ☐          |
-| 5   | **Kỷ luật**                         | Tuân thủ giờ giấc, nội quy, quy trình làm việc                                                   | ☐   | ☐   | ✅          |
-| 6   | **Tính cầu tiến**                   | Sẵn sàng nhận feedback và cải thiện bản thân                                                     | ☐   | ✅   | ☐          |
-| 7   | **Giao tiếp**                       | Trình bày ý tưởng, báo cáo công việc rõ ràng                                                     | ☐   | ✅   | ☐          |
-| 8   | **Hợp tác nhóm**                    | Làm việc hiệu quả với đồng nghiệp, tham gia nhóm                                                 | ✅   | ☐   | ☐          |
-| 9   | **Ứng xử chuyên nghiệp**            | Tôn trọng đồng nghiệp, đối tác, môi trường làm việc                                              | ✅   | ☐   | ☐          |
-| 10  | **Tư duy giải quyết vấn đề**        | Nhận diện vấn đề, đề xuất giải pháp, sáng tạo                                                    | ☐   | ✅   | ☐          |
-| 11  | **Đóng góp vào dự án/tổ chức**      | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                         | ✅   | ☐   | ☐          |
-| 12  | **Tổng thể**                        | Đánh giá chung về toàn bộ quá trình thực tập                                                     | ✅   | ☐   | ☐          |
+| 2   | **Khả năng học hỏi**                   | Tiếp thu kiến thức mới, học hỏi nhanh                                                                            | ✅   | ☐   | ☐          |
+| 3   | **Chủ động**                            | Tự tìm hiểu, nhận nhiệm vụ mà không chờ chỉ dẫn                                                             | ✅   | ☐   | ☐          |
+| 4   | **Tinh thần trách nhiệm**               | Hoàn thành công việc đúng hạn, đảm bảo chất lượng                                                         | ✅   | ☐   | ☐          |
+| 5   | **Kỷ luật**                              | Tuân thủ giờ giấc, nội quy, quy trình làm việc                                                                 | ✅   | ☐   | ☐          |
+| 6   | **Tính cầu tiến**                       | Sẵn sàng nhận feedback và cải thiện bản thân                                                                   | ✅   | ☐   | ☐          |
+| 7   | **Giao tiếp**                             | Trình bày ý tưởng, báo cáo công việc rõ ràng                                                                | ☐   | ✅   | ☐          |
+| 8   | **Hợp tác nhóm**                        | Làm việc hiệu quả với đồng nghiệp, tham gia nhóm                                                              | ✅   | ☐   | ☐          |
+| 9   | **Ứng xử chuyên nghiệp**               | Tôn trọng đồng nghiệp, đối tác, môi trường làm việc                                                       | ✅   | ☐   | ☐          |
+| 10  | **Tư duy giải quyết vấn đề**         | Nhận diện vấn đề, đề xuất giải pháp, sáng tạo                                                              | ✅   | ☐   | ☐          |
+| 11  | **Đóng góp vào dự án/tổ chức**     | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                                     | ✅   | ☐   | ☐          |
+| 12  | **Tổng thể**                             | Đánh giá chung về toàn bộ quá trình thực tập                                                                 | ✅   | ☐   | ☐          |
 
 ### Cần cải thiện
 
-* Nâng cao tính kỹ luật, chấp hành nghiêm chỉnh nội quy của công ty hoặc bất kỳ trong một tổ chức nào
-* Cải thiện trong cách tư duy giải quyết vấn đề
-* Học cách giao tiếp tốt hơn trong giao tiếp hằng ngày và trong công việc, xử lý tình huống
+* Cải thiện hơn trong cách tư duy giải quyết vấn đề và triển khai kiến trúc.
+* Học cách giao tiếp tốt hơn trong giao tiếp hằng ngày và trong công việc, xử lý tình huống.

@@ -1,115 +1,174 @@
 ---
-title: "Proposal"
-date: 2024-01-01
+title: "Project Proposal"
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+# NeonFoodMap – Vinh Khanh Food Street Automated Audio Guide
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+## 1. Project Overview
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+This project builds an automated audio-guide platform for visitors to **Vinh Khanh Food Street, District 4, Ho Chi Minh City**. It helps visitors explore food and cultural locations through multimedia content triggered by location or QR codes.
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+| Criteria | Value |
+| --- | --- |
+| Project type | Automated audio-guide and digital tourism platform |
+| Deployment area | Vinh Khanh Food Street, District 4, Ho Chi Minh City |
+| Users | Visitors, local business partners, and administrators |
+| Technologies | Frontend on S3/CloudFront; backend containers on Amazon ECS Fargate; Amazon RDS MySQL and Amazon S3 |
+| AWS infrastructure | VPC across two Availability Zones, ECS Auto Scaling, and RDS Multi-AZ |
+| Operations | Docker, GitHub Actions, Amazon ECR, CloudWatch, and Amazon SNS |
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+## 2. Objectives
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+### 2.1 Project Objectives
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+| # | Objective | Measure |
+| --- | --- | --- |
+| 1 | Provide automated audio guides through location or QR codes. | Users can access POIs and play multimedia content. |
+| 2 | Manage POIs, audio, images, menus, and partner information in one place. | Data is managed through APIs and an admin interface. |
+| 3 | Deploy a scalable, secure, and monitored AWS system. | ECS Auto Scaling, RDS Multi-AZ, private subnets, CloudWatch, and SNS are configured. |
+| 4 | Automate releases. | Images are built, pushed to ECR, and deployed to ECS through GitHub Actions. |
 
-![IoT Weather Station Architecture](https://thuy0an.github.io/aws-learning-journey-fcaj/images/2-Proposal/edge_architecture.jpeg)
+### 2.2 Benefits
 
-![IoT Weather Platform Architecture](https://thuy0an.github.io/aws-learning-journey-fcaj/images/2-Proposal/platform_architecture.jpeg)
+- **Better visitor experience:** flexible and easy-to-access multimedia guides.
+- **Local business support:** a digital channel for menus, promotions, and service information.
+- **Reliable operations:** separated application, data, and network layers with monitoring and alerts.
+- **Easy scaling:** containerized architecture across multiple Availability Zones.
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+## 3. Problems to Solve
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+**Problem 1 — High staffing cost:** Manual guiding and content updates need staff, are hard to provide continuously, and cannot easily support multiple languages.
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+**Problem 2 — Infrastructure cost and complexity:** A multi-user platform needs scaling, media storage, backups, monitoring, and security. Poor design can increase operating cost or reduce performance during busy periods.
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+**Problem 3 — Fragmented content management:** POIs, guides, images, audio, menus, and promotions can be stored separately, making updates and quality control difficult.
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+### 3.1 Functional Scope
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+- Display maps and POIs in Vinh Khanh Food Street.
+- Trigger guides with geofencing or QR codes, including audio and images.
+- Support multilingual content and synchronized user history.
+- Let partners update menus and promotions.
+- Provide administration for POIs, content, users, and system health.
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+## 4. AWS Deployment Architecture
 
-Total: $0.7/month, $8.40/12 months
+The system uses a **multi-tier architecture** on **Amazon Web Services (AWS)** and follows the **AWS Well-Architected Framework**. All infrastructure runs in **Amazon VPC (10.0.0.0/16)** in **ap-southeast-1 (Singapore)** across two Availability Zones for high availability and fault tolerance.
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+Static frontend content is stored in **Amazon S3 Static Website** and delivered through **Amazon CloudFront**. API requests go to an **Application Load Balancer**, then to backend containers on **Amazon ECS Fargate** in private subnets. Business data is stored in **Amazon RDS MySQL Multi-AZ**. GitHub Actions, Amazon ECR, CloudWatch, and SNS support automated deployment, monitoring, and alerts.
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+### 4.1 Architecture Diagrams
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+#### Platform Architecture
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+{{< event-image src="images/2-Proposal/platform_architecture.jpg" alt="AWS platform architecture" >}}
 
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+#### Edge and Service Connectivity
+
+{{< event-image src="images/2-Proposal/edge_architecture.jpg" alt="AWS edge and service connectivity architecture" >}}
+
+### 4.2 Architecture Components
+
+| Layer | Service | Role |
+| --- | --- | --- |
+| Edge | Amazon CloudFront | Delivers static content from S3 and forwards API requests to the ALB. |
+| Frontend | Amazon S3 Static Website | Stores static application assets. |
+| Compute | Application Load Balancer | Receives API requests, performs health checks, and routes traffic to ECS. |
+| Compute | Amazon ECS Fargate | Runs backend containers in private subnets and scales as needed. |
+| Service discovery | AWS Cloud Map and Amazon Route 53 | Supports internal service discovery in the ECS cluster. |
+| CI/CD | GitHub Actions, AWS STS, Amazon ECR | Authenticates with OIDC, builds images, stores them, and deploys new versions. |
+| Data | Amazon RDS MySQL Multi-AZ | Stores business data with a synchronized standby database. |
+| Media | Amazon S3 and VPC Endpoint for S3 | Stores media and provides private access from the application. |
+| Security | AWS IAM and AWS Secrets Manager | Manages permissions and sensitive configuration. |
+| Observability | Amazon CloudWatch, Amazon SNS, and S3 Logs | Collects logs and metrics, sends alerts, and stores logs long term. |
+
+### 4.3 Main Processing Flow
+
+1. Users access the application through CloudFront.
+2. CloudFront serves the static frontend from S3.
+3. Dynamic API requests go through the ALB to backend containers on ECS Fargate.
+4. The backend processes requests, uses RDS MySQL, and accesses media through the S3 endpoint.
+5. CloudWatch collects logs and metrics; SNS sends alerts.
+6. GitHub Actions builds and pushes images to ECR, then updates the ECS service.
+
+### 4.4 AWS Well-Architected Framework
+
+| Pillar | Applied Solution |
+| --- | --- |
+| Operational Excellence | GitHub Actions CI/CD, CloudFormation, CloudWatch Logs, and SNS alerts. |
+| Security | IAM roles with least privilege, Secrets Manager, and private subnets. |
+| Reliability | ALB, ECS Auto Scaling, RDS Multi-AZ, two Availability Zones, and health checks. |
+| Performance Efficiency | CloudFront, ECS Fargate scaling, and S3 for media. |
+| Cost Optimization | ECS Auto Scaling and S3 Lifecycle. |
+| Sustainability | Scale resources based on demand and stop dev environments outside working hours. |
+
+## 5. Timeline
+
+| Phase | Worklog Schedule | Activities |
+| --- | --- | --- |
+| Foundation and design | Weeks 1–3 | AWS account, IAM, Budgets, networking, EC2, S3, RDS, monitoring, backup, and architecture design. |
+| Development and infrastructure preparation | Week 4 | Agile planning, backend, RDS schema, Dockerfiles, CloudFormation, IAM, and security setup. |
+| Containerization and staging | Weeks 5–6 | Frontend, backend, APIs, ECR, ECS Fargate, ALB, RDS, Auto Scaling, monitoring, and staging tests. |
+| Deployment automation | Week 7 | GitHub Actions OIDC, automated image build/push, task-definition updates, and rollout monitoring. |
+| Content delivery and completion | Weeks 7–8 | CloudFront, DNS, access checks, cost and security review, testing, documentation, and final architecture. |
+
+## 6. Budget
+
+### 6.1 Current and Maximum Estimated Cost
+
+| Service | Current Architecture Configuration | Current Monthly Cost | Maximum Estimated Monthly Cost |
+| --- | --- | ---: | ---: |
+| Amazon ECS (Fargate) | Backend containers; production uses two tasks across two AZs with Auto Scaling. | $9.86 | ~$20–35 |
+| Amazon RDS MySQL | Production Multi-AZ with primary and standby databases. | $11.78 | ~$50 |
+| NAT Gateway, ALB, and Amazon VPC | Two NAT Gateways and an ALB for production; the dashboard groups part of the cost under EC2–Other and VPC. | $32.80* | ~$82–84 |
+| Amazon CloudFront | Static delivery from S3 and API routing. | ~$4 | ~$8 |
+| Amazon S3 | Static website, media, and logs. | ~$2 | ~$2 |
+| Amazon CloudWatch and SNS | Logs, metrics, alarms, and email alerts. | $5.61 | ~$5–6 |
+| AWS Secrets Manager and Amazon ECR | Secrets and container images. | ~$2 | ~$3 |
+| **Total monthly cost** | Current dashboard cost and complete production architecture. | **$68.20** | **~$170–190** |
+
+\* $32.80 is the total of **EC2–Other ($25.32)** and **Amazon VPC ($7.48)**. Small rounding differences may occur.
+
+### 6.2 Cost Optimization Strategy
+
+- Set AWS Budgets and SNS alerts at 50%, 80%, and 100% of the monthly budget.
+- Monitor NAT Gateway, ECS Fargate, RDS, and CloudWatch costs.
+- Use Auto Scaling and remove unused staging resources.
+- Use CloudFront caching and S3 Lifecycle rules as media and logs grow.
+
+## 7. Risk Assessment
+
+### 7.1 Risk Matrix
+
+| Risk | Likelihood | Impact |
+| --- | --- | --- |
+| AWS cost exceeds forecast | Medium | Medium |
+| ECS task or container failure | Medium | Medium |
+| Database failure | Low | High |
+| Sensitive-data exposure | Low | Very high |
+| Sudden traffic increase | Medium | Medium |
+| Incomplete logs or alerts | Medium | Medium |
+| Deployment failure | Medium | Medium |
+
+### 7.2 Response Plan
+
+- Check Budgets, Cost Explorer, and SNS alerts when costs reach thresholds.
+- Check CloudWatch Logs, ALB health checks, and ECS task definitions when APIs or containers fail.
+- Protect and restore data through a tested backup and restore process.
+- Rotate exposed secrets and review IAM permissions and deployment history.
+
+## 9. Expected Results
+
+* **Technical improvement:** Digitize guides and POI management, replacing manual information delivery with a multimedia platform that can be monitored, scaled, and deployed automatically on AWS.
+* **Long-term value:** Create reusable content and data for other tourism locations, future user-behavior analysis, multilingual content, and local-business partnerships.
+
+### References
+
+- [Team 1 Project Report](/aws-learning-journey-fcaj/images/2-Proposal/BaoCaoNhom1.docx)
+- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
+- [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/)
+- [AWS Documentation](https://docs.aws.amazon.com/)

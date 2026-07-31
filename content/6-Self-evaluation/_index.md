@@ -1,39 +1,38 @@
 ---
 title: "Self-Assessment"
-date: 2024-01-01
+date: 2026-08-15
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+During my internship at **BOOTCAMP FIRST CLOUD AI JOURNEY (FCAJ)**, from **June 22, 2026** to **August 15, 2026**, I had the opportunity to learn, practice, and apply classroom knowledge in a practical learning and working environment. This period helped me understand the process of developing cloud-based systems and the work of a Cloud Engineer in an enterprise.
 
-During my internship at **[Company/Organization Name]** from **[start date]** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in **[briefly describe the main project or task]**, through which I improved my skills in **[list skills: programming, analysis, reporting, communication, etc.]**.  
+During the Bootcamp, my team and I worked on **NeonFoodMap – Vinh Khanh Food Street Automated Audio Guide**. The project was deployed on Amazon Web Services (AWS). I took part in requirements analysis, system architecture design, deployment, and configuration of IAM, RDS, ECS, ECR, CI/CD, ALB, CloudWatch, Cost Monitoring, and CloudFront. I also contributed to project documentation, architecture diagrams, and testing.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+Through this project, I improved my Cloud Computing knowledge, AWS deployment skills, technical-document reading, architecture design based on the AWS Well-Architected Framework, teamwork, task planning, reporting, and problem solving.
 
-To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
+Throughout the internship, I tried to complete assigned tasks on time, read official AWS documentation when I faced difficulties, and actively discussed solutions with team members. Although I still have much to learn, I maintain a positive learning mindset and welcome feedback to improve myself.
 
-| No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of the field, applying knowledge in practice, proficiency with tools, work quality | ✅    | ☐    | ☐       |
-| 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ☐    | ✅       |
-| 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ☐    | ✅    | ☐       |
-| 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ☐    | ✅    | ☐       |
-| 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting colleagues, partners, and the work environment                                        | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Identifying problems, proposing solutions, and showing creativity                                | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Work effectiveness, innovative ideas, recognition from the team                                  | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | General evaluation of the entire internship period                                               | ✅    | ☐    | ☐       |
+To reflect objectively on my internship, I assess myself using the following criteria:
 
-### Needs Improvement
+| No. | Criteria | Description | Good | Fair | Average |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **Professional knowledge and skills** | Understanding the field, applying knowledge in practice, using tools, and delivering quality work. | ✅ | ☐ | ☐ |
+| 2 | **Ability to learn** | Learning new knowledge and adapting quickly. | ✅ | ✅ | ☐ |
+| 3 | **Proactiveness** | Researching independently and taking responsibility for assigned tasks. | ✅ | ☐ | ☐ |
+| 4 | **Sense of responsibility** | Completing work on time and maintaining quality. | ✅ | ☐ | ☐ |
+| 5 | **Discipline** | Following schedules, rules, and work processes. | ✅ | ☐ | ✅ |
+| 6 | **Growth mindset** | Accepting feedback and improving continuously. | ✅ | ✅ | ☐ |
+| 7 | **Communication** | Presenting ideas and reporting work clearly. | ☐ | ✅ | ☐ |
+| 8 | **Teamwork** | Working effectively with team members. | ✅ | ☐ | ☐ |
+| 9 | **Professional conduct** | Respecting team members, partners, and the working environment. | ✅ | ☐ | ☐ |
+| 10 | **Problem-solving skills** | Identifying problems and proposing suitable solutions. | ✅ | ✅ | ☐ |
+| 11 | **Contribution to the project/team** | Work effectiveness and contribution to team results. | ✅ | ☐ | ☐ |
+| 12 | **Overall assessment** | Overall assessment of the internship period. | ✅ | ☐ | ☐ |
 
-* Strengthen discipline and strictly comply with the rules and regulations of the company or any organization  
-* Improve problem-solving thinking  
-* Enhance communication skills in both daily interactions and professional contexts, including handling situations effectively
+### Areas for Improvement
+
+- Improve discipline and consistently follow organizational rules and processes.
+- Develop stronger problem-solving thinking.
+- Improve communication in daily discussions and professional situations.

@@ -1,57 +1,35 @@
 ---
 title: "Week 1 Worklog"
-date: 2024-01-01
+date: 2026-06-28
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 1 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Become familiar with the working environment and tools used in the FCAJ program.
+* Learn the fundamentals of AWS account security, cost management, and the development environment.
+* Understand core AWS networking concepts and complete networking labs.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Completed This Week:
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Become familiar with the FCAJ program; create an AWS Free Tier account, enable MFA, and learn to configure AWS Budgets. | 22/06/2026 | 22/06/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/)<br /><br />[AWS Free Tier](https://000001.awsstudygroup.com/) |
+| 3 | - Install Kiro IDE and AWS CLI.<br />- Learn about VPC, subnets, route tables, internet gateways, and security groups. | 23/06/2026 | 23/06/2026 | [Cost Management with AWS Budget](https://000007.awsstudygroup.com/) |
+| 4 | - **Practice:** Configure a network using a VPC and Site-to-Site VPN, then verify routing. | 24/06/2026 | 24/06/2026 | [Amazon VPC and AWS Site-to-Site VPN](https://000003.awsstudygroup.com/) |
+| 5 | - **Practice:** Configure VPC peering, security groups, and network ACLs. | 25/06/2026 | 25/06/2026 | [Setting up VPC Peering](https://000019.awsstudygroup.com/) |
+| 6 | - **Practice:** Learn about hybrid networking with Transit Gateway and Route 53 Resolver, and practice AWS CLI commands. | 25/06/2026 | 26/06/2026 | [Set up Hybrid DNS with Route 53](https://000010.awsstudygroup.com/)<br /><br />[Set up AWS Transit Gateway](https://000020.awsstudygroup.com/) |
 
 ### Week 1 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Learned how to create and secure an AWS account with MFA and IAM users; successfully created and configured an AWS Free Tier account; and learned to configure AWS Budgets to control costs.
+* Became familiar with the AWS Management Console and learned how to find, access, and use services through the web interface.
+* Installed Kiro IDE and configured AWS CLI with the required settings: Access Key, Secret Key, and default Region.
+* Understood core AWS networking concepts, including VPCs, subnets, security groups, and network ACLs, as well as the roles of Transit Gateway and hybrid DNS in a hybrid network architecture.
+* Used AWS CLI in Kiro to perform basic tasks:
 
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+  * Check account and configuration information.
+  * Create and manage key pairs.
+  * Check information about running services.
