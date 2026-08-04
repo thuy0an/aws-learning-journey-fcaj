@@ -36,7 +36,7 @@ Chọn **Create VPC**. AWS tạo VPC, Internet Gateway, route table và các sub
 
 Tại **Elastic IP addresses**, chọn **Allocate Elastic IP address**, giữ cấu hình mặc định và thêm tag `Name=EIP-NAT-AZ1a`. Elastic IP này được gán cho NAT Gateway ở bước tiếp theo.
 
-{{< event-image src="images/5-Workshop/5.3-Structure/picCreateVPC1.jpg" alt="Picture VPC Create 2" >}}
+{{< event-image src="images/5-Workshop/5.3-Structure/picCreateVPC2.jpg" alt="Picture VPC Create 2" >}}
 
 ### Tạo NAT Gateway
 
