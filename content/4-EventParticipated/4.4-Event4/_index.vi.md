@@ -137,4 +137,4 @@ Workshop kết hợp lý thuyết với các ví dụ về tự động hóa quy
 
 {{< event-image src="images/4-EventParticipated/Event_4_8_pic3.jpg" alt="Event_4_8_pic3" >}}
 
-{{< event-image src="images/4-EventParticipated/Event_4_8_pic3.jpg" alt="Event_4_8_pic3" >}}
+{{< event-image src="images/4-EventParticipated/Event_4_8_pic4.jpg" alt="Event_4_8_pic4" >}}
