@@ -5,7 +5,6 @@ weight: 3
 chapter: false
 pre: " <b> 5.4.3. </b> "
 ---
-
 After Docker images are available in Amazon ECR, this stage deploys **NeonFoodMap** to Amazon ECS Fargate. GitHub Actions checks source code, builds and pushes images, and requests AWS access through OIDC. ECS runs separate frontend and backend containers in private subnets, while an Application Load Balancer (ALB) accepts Internet traffic and routes it to the services.
 
 ## Create the GitHub OIDC identity provider
@@ -15,10 +14,10 @@ GitHub Actions needs an **identity provider** to exchange its token for temporar
 1. Open **Identity and Access Management (IAM)**. Select **Access management → Identity providers → Add provider**.
 2. Choose **OpenID Connect** and enter:
 
-| Field | Value |
-| --- | --- |
+| Field        | Value                                           |
+| ------------ | ----------------------------------------------- |
 | Provider URL | `https://token.actions.githubusercontent.com` |
-| Audience | `sts.amazonaws.com` |
+| Audience     | `sts.amazonaws.com`                           |
 
 {{< event-image src="images/5-Workshop/5.4-Onprem/5.4.3/picCreateOIDC.jpg" alt="Create the GitHub OIDC provider" >}}
 
@@ -56,6 +55,37 @@ After creation, confirm that the provider uses `https://token.actions.githubuser
 
 {{< event-image src="images/5-Workshop/5.4-Onprem/5.4.3/picRoleFinal.jpg" alt="Final GitHub Actions role" >}}
 
+## CI/CD workflow with GitHub Actions
+
+NeonFoodMap combines **Continuous Integration (CI)** and **Continuous Deployment (CD)** in one workflow: **`deploy.yml`**. The report separates the two phases below for clarity; the repository still uses only one workflow file.
+
+### CI — Source-code checks
+
+CI runs for pull requests to `main` and for pushes to `main`, `develop`, or `feature/**` that change the frontend or backend:
+
+- **Backend:** runs `flake8` and Django unit tests.
+- **Frontend:** runs `npm ci`, ESLint, and the production build.
+- **E2E:** after the frontend check passes, Playwright runs the `critical` test suite and retains its report for 7 days.
+
+The pipeline can build deployment images only after both the backend and E2E checks pass.
+
+### CD — Build and deployment
+
+CD runs only when a push reaches **`main`** and all CI checks have passed:
+
+- GitHub Actions uses OIDC to authenticate with AWS, then builds and pushes backend and frontend images to Amazon ECR with `latest` and `sha-<git-short-sha>` tags.
+- Two deployment jobs run in parallel: they update the task definitions and deploy `svc-neonfoodmap-be` and `svc-neonfoodmap-fe` to ECS. The backend job also runs migrations and verifies the RDS connection.
+- After both services stabilize, smoke tests call the root API plus `/api/pois/`, `/api/tours/`, and `/api/categories/`; the pipeline fails on an HTTP 5xx response.
+
+**Workflow: `deploy.yml` — automatic deployment on pushes to `main`**
+
+```text
+backend-test ─────┐
+                  ├──▶ build-and-push ──┬──▶ deploy-backend  ──┐
+frontend-check ──▶ e2e-tests ───────────┘                      ├──▶ smoke-tests
+                                             └──▶ deploy-frontend ─┘
+```
+
 ## Create the ECS cluster and task definitions
 
 NeonFoodMap uses **Amazon ECS Fargate**, so the team manages containers and task configuration instead of EC2 hosts. Backend and frontend use separate task definitions for independent updates, logs, and permissions.
@@ -77,14 +107,14 @@ In `NeonFoodmap.internal`, select **Create service**.
 
 {{< event-image src="images/5-Workshop/5.4-Onprem/5.4.3/picCLoudMapService.jpg" alt="Create Cloud Map services" >}}
 
-| Setting | Backend | Frontend |
-| --- | --- | --- |
-| Service name | `backend` → `backend.neonfoodmap.internal` | `frontend` → `frontend.neonfoodmap.internal` |
-| Description | Neon Foodmap Backend Service Discovery Name | Neon Foodmap Frontend Service Discovery Name |
-| Routing policy | `WEIGHTED` | `WEIGHTED` |
-| Record type | `A` | `A` |
-| DNS TTL | `300` seconds | `300` seconds |
-| Health check | No health check | No health check |
+| Setting        | Backend                                         | Frontend                                          |
+| -------------- | ----------------------------------------------- | ------------------------------------------------- |
+| Service name   | `backend` → `backend.neonfoodmap.internal` | `frontend` → `frontend.neonfoodmap.internal` |
+| Description    | Neon Foodmap Backend Service Discovery Name     | Neon Foodmap Frontend Service Discovery Name      |
+| Routing policy | `WEIGHTED`                                    | `WEIGHTED`                                      |
+| Record type    | `A`                                           | `A`                                             |
+| DNS TTL        | `300` seconds                                 | `300` seconds                                   |
+| Health check   | No health check                                 | No health check                                   |
 
 ECS registers and deregisters these records with each task lifecycle. The ALB target groups created later handle public-traffic health checks.
 
@@ -132,12 +162,12 @@ ECS registers and deregisters these records with each task lifecycle. The ALB ta
 
 Repeat the process for the frontend. Separate task definitions mean the frontend can deploy without making a new backend revision, and vice versa.
 
-| Configuration | Backend | Frontend |
-| --- | --- | --- |
-| Task family | `neonfoodmap-task-be` | `neonfoodmap-task-fe` |
-| ECR image | `neonfoodmap-backend` | `neonfoodmap-frontend` |
-| Container port | `8000` | `80` |
-| CPU / memory | `256` / `512 MiB` | `256` / `512 MiB` |
+| Configuration        | Backend                      | Frontend                      |
+| -------------------- | ---------------------------- | ----------------------------- |
+| Task family          | `neonfoodmap-task-be`      | `neonfoodmap-task-fe`       |
+| ECR image            | `neonfoodmap-backend`      | `neonfoodmap-frontend`      |
+| Container port       | `8000`                     | `80`                        |
+| CPU / memory         | `256` / `512 MiB`        | `256` / `512 MiB`         |
 | CloudWatch log group | `/ecs/neonfoodmap-backend` | `/ecs/neonfoodmap-frontend` |
 
 For the frontend, select `neonfoodmap-frontend`, set port `80`, and use `/ecs/neonfoodmap-frontend`.
@@ -174,14 +204,14 @@ Fargate gives tasks private IP addresses, so both target groups must use **Targe
 
 {{< event-image src="images/5-Workshop/5.4-Onprem/5.4.3/picTG_HC1.jpg" alt="Create frontend target group" >}}
 
-| Field | Frontend value |
-| --- | --- |
-| Target group name | `TG-NeonFoodMap-FE` |
-| Target type | **IP addresses** |
-| Protocol / port | HTTP / `80` |
-| Health check path | `/` |
-| Healthy / unhealthy threshold | `2` / `2` |
-| Health check interval | `30 seconds` |
+| Field                         | Frontend value         |
+| ----------------------------- | ---------------------- |
+| Target group name             | `TG-NeonFoodMap-FE`  |
+| Target type                   | **IP addresses** |
+| Protocol / port               | HTTP /`80`           |
+| Health check path             | `/`                  |
+| Healthy / unhealthy threshold | `2` / `2`          |
+| Health check interval         | `30 seconds`         |
 
 2. Select **Next**, skip manual IP registration, and select **Create target group**.
 
@@ -189,14 +219,14 @@ Fargate gives tasks private IP addresses, so both target groups must use **Targe
 
 3. Create the backend target group. Its health check path must match a real Django endpoint:
 
-| Field | Backend value |
-| --- | --- |
-| Target group name | `TG-NeonFoodMap-BE` |
-| Target type | **IP addresses** |
-| Protocol / port | HTTP / `8000` |
-| Health check path | `/api/health/` |
-| Healthy / unhealthy threshold | `2` / `2` |
-| Health check interval | `30 seconds` |
+| Field                         | Backend value          |
+| ----------------------------- | ---------------------- |
+| Target group name             | `TG-NeonFoodMap-BE`  |
+| Target type                   | **IP addresses** |
+| Protocol / port               | HTTP /`8000`         |
+| Health check path             | `/api/health/`       |
+| Healthy / unhealthy threshold | `2` / `2`          |
+| Health check interval         | `30 seconds`         |
 
 {{< event-image src="images/5-Workshop/5.4-Onprem/5.4.3/picTG_HC_Final.jpg" alt="Backend and frontend target groups" >}}
 

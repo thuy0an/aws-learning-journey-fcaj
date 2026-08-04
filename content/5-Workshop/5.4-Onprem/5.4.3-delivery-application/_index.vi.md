@@ -45,6 +45,35 @@ Role `NeonFoodmap-GitHub-Actions-Role` cho phép workflow lấy quyền tạm th
 
 {{< event-image src="images/5-Workshop/5.4-Onprem/5.4.3/picRoleFinal.jpg" alt="picRoleFinal" >}}
 
+## Quy trình CI/CD với GitHub Actions
+
+### CI — Kiểm tra mã nguồn
+
+CI chạy khi có pull request vào `main` hoặc push vào `main`, `develop`, `feature/**` có thay đổi ở frontend/backend:
+
+- **Backend:** chạy `flake8` và Django unit test.
+- **Frontend:** chạy `npm ci`, ESLint và build.
+- **E2E:** sau khi frontend check thành công, Playwright chạy các kịch bản `critical`; báo cáo được lưu 7 ngày.
+
+Chỉ khi backend test và E2E test thành công, pipeline mới được phép tạo image để triển khai.
+
+### CD — Build và triển khai
+
+CD chỉ chạy khi **push vào `main`** và toàn bộ kiểm tra CI đã pass:
+
+- GitHub Actions dùng OIDC để xác thực AWS, build/push backend và frontend image lên Amazon ECR với tag `latest` và `sha-<git-short-sha>`.
+- Hai job deploy chạy song song: cập nhật task definition rồi deploy `svc-neonfoodmap-be` và `svc-neonfoodmap-fe` lên ECS. Backend chạy thêm migration và kiểm tra kết nối RDS.
+- Sau khi hai service ổn định, smoke test gọi API gốc cùng các endpoint `/api/pois/`, `/api/tours/`, `/api/categories/`; pipeline báo lỗi nếu nhận HTTP 5xx.
+
+**Workflow: `deploy.yml` — tự động triển khai khi push vào `main`**
+
+```text
+backend-test ─────┐
+                  ├──▶ build-and-push ──┬──▶ deploy-backend  ──┐
+frontend-check ──▶ e2e-tests ───────────┘                      ├──▶ smoke-tests
+                                             └──▶ deploy-frontend ─┘
+```
+
 ## Tạo ECS Cluster và Task Definition
 
 NeonFoodMap sử dụng **Amazon ECS Fargate**, do đó đội dự án chỉ quản lý container và cấu hình task, không phải vận hành EC2 host. Backend và frontend được chạy bằng hai task definition riêng để có thể cập nhật, theo dõi log và phân quyền độc lập.
