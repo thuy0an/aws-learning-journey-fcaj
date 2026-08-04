@@ -1,31 +1,44 @@
 ---
 title: "Blog 2"
-date: 2024-01-01
-weight: 1
+date: 2026-07-31
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# AMAZON RDS AUTOMATION ON SCHEDULE
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+Hello everyone, I have been learning more about AWS cost optimization and read the AWS Prescriptive Guidance article [Automatically stop and start an Amazon RDS DB instance using AWS Systems Manager Maintenance Windows](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automatically-stop-and-start-an-amazon-rds-db-instance-using-aws-systems-manager-maintenance-windows.html).
 
-Key points to know:
+The article explains how to **automatically start and stop Amazon RDS** on a schedule. For example, a database can run only during business hours and stop at night or on weekends. This is useful for development, testing, and staging environments that do not need to run 24/7.
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+At first, I thought this would require EventBridge, Lambda, and custom code to call the RDS API. However, AWS Systems Manager already provides the `AWS-StartRdsInstance` and `AWS-StopRdsInstance` Automation runbooks, so almost no extra logic is needed.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+Key points:
 
-...Image...
+- Create two Maintenance Windows: one for starting and one for stopping.
+- Use cron expressions to set the run time.
+- Add a tag to the RDS instances that should be included.
+- Put the instances in a Resource Group.
+- Use Automation runbooks to start or stop the database automatically.
 
-...Link...
+When there are many RDS instances, the same tag can be applied to all of them instead of configuring every database manually. Systems Manager then runs the task for all resources in the group.
 
-...Guide...
+What I learned:
+
+- Not every resource needs to run 24/7, especially development and testing environments.
+- Before writing Lambda automation, check whether AWS already provides a suitable runbook.
+- An IAM role should be allowed to start and stop only the required RDS instances.
+- RDS can be stopped for at most seven consecutive days. AWS then starts it again for maintenance.
+
+My project currently keeps the database running continuously and stops it only when it is not in use. This article showed me a simple way to reduce costs without building too many extra components.
+
+{{< event-image src="images/3-Blog/Blog2.png" alt="Blog 2" >}}
+
+## References
+
+[Automatically stop and start an Amazon RDS DB instance using AWS Systems Manager Maintenance Windows](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automatically-stop-and-start-an-amazon-rds-db-instance-using-aws-systems-manager-maintenance-windows.html)
+
+## Link Post
+
+[AWS Study Group post](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2230171591081134/)

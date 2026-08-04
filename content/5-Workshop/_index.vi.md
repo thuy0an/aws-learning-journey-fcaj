@@ -1,33 +1,28 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-08-04
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+## Workshop: Triển khai NeonFoodMap trên AWS
 
+Workshop này hướng dẫn triển khai **NeonFoodMap** — nền tảng khám phá ẩm thực và du lịch số — trên AWS. Ứng dụng gồm React frontend, Django backend, cơ sở dữ liệu MySQL, dữ liệu điểm đến (POI), thuyết minh âm thanh, tour và thanh toán sandbox.
 
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+Hạ tầng được thiết kế và vận hành tại Region **Asia Pacific (Singapore) — `ap-southeast-1`** theo mô hình VPC đa Availability Zone. Nội dung đi từ thiết kế hạ tầng, quản lý quyền, đóng gói ứng dụng đến triển khai, giám sát và dọn dẹp tài nguyên.
 
-#### Tổng quan
+Các dịch vụ chính được sử dụng gồm:
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+* **Compute & delivery** — Amazon ECS Fargate và Application Load Balancer chạy Django backend dạng container; Amazon S3 và CloudFront phân phối React SPA cùng tài nguyên tĩnh.
+* **Dữ liệu, bảo mật & CI/CD** — Amazon RDS MySQL lưu dữ liệu nghiệp vụ; GitHub Actions xác thực qua OIDC/AWS STS để triển khai không cần access key dài hạn; CloudWatch hỗ trợ theo dõi log, metric và cảnh báo.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+## Nội dung
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
-
-#### Nội dung
-
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+1. [Tổng quan workshop](5.1-Workshop-overview/)
+2. [Các bước chuẩn bị](5.2-Prerequiste/)
+3. [Kiến trúc hệ thống](5.3-Structure/)
+4. [Các bước triển khai](5.4-Onprem/)
+5. [Kiểm tra triển khai ECS, CI/CD pipeline, ALB và CloudWatch](5.5-Policy/)
+6. [Tổng quan giao diện và chức năng ứng dụng](5.6-Project-Visual/)
+7. [Dọn dẹp tài nguyên](5.7-Cleanup/)

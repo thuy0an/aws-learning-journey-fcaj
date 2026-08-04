@@ -81,7 +81,7 @@ Kiến trúc triển khai được xây dựng trên hai Availability Zone để
 
 - Người dùng truy cập ứng dụng qua **Internet Gateway** và **Application Load Balancer (ALB)**.
 - Frontend và backend được đóng gói thành container, vận hành bằng **Amazon ECS Fargate** trong ECS Cluster.
-- **AWS Cloud Map** kết hợp **Amazon Route 53** hỗ trợ dịch vụ giao tiếp nội bộ giữa các thành phần ứng dụng.
+- **AWS Cloud Map** được sử dụng để **quản lý Service Discovery** giữa các Container trong ECS Cluster, giúp các dịch vụ giao tiếp nội bộ mà không cần phải cập nhật lại IP khi cập nhật Task Revision mới.
 
 ### 4.2 Các thành phần kiến trúc
 
@@ -98,7 +98,6 @@ Kiến trúc triển khai được xây dựng trên hai Availability Zone để
 | Security               | AWS IAM và AWS Secrets Manager              | Phân quyền IAM role và bảo vệ thông tin.                                                |
 | Infrastructure as Code | AWS CloudFormation                           | Chuẩn hóa việc khởi tạo và thay đổi hạ tầng.                                        |
 | Observability          | Amazon CloudWatch, Amazon SNS và S3 Logs    | Thu thập log, metric, tạo alert và lưu trữ log.                                         |
-|                        |                                              |                                                                                               |
 
 ### 4.3 AWS Well-Architected Framework
 
@@ -125,16 +124,16 @@ Kiến trúc triển khai được xây dựng trên hai Availability Zone để
 
 ### 6.1 Chi phí sử dụng và chi phí tối đa dự kiến
 
-| Dịch vụ                          | Cấu hình theo kiến trúc hiện tại                                                                                                 |                          Chi phí/tháng | Chi phí ước tính tối đa/tháng |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------: | -----------------------------------: |
-| Amazon ECS (Fargate)               | Chạy backend container trên ECS; Production dùng 2 tasks trên 2 AZ với Auto Scaling, ví dụ 0,5 vCPU và 1 GB RAM cho mỗi task. |                         $9,86 | ~$20–35 |                                      |
-| Amazon RDS MySQL                   | Production dùng Multi-AZ: Primary ở AZ A và Standby ở AZ B.                                                                        |                            $11,78 | ~$50 |                                      |
-| NAT Gateway, ALB và Amazon VPC    | Hai NAT Gateway và ALB cho Production; dashboard hiện gộp một phần chi phí vào**EC2 – Other** và **VPC**.         |                        $32,80 | ~$82–84 |                                      |
-| Amazon CloudFront                  | Phân phối static web từ S3 và định tuyến API; giả định khoảng 100 GB truyền dữ liệu.                                     | ~$4 |                                ~$8 |                                      |
-| Amazon S3                          | Lưu static web, media và logs; giả định khoảng 50 GB.                                                                            | ~$2 |                                ~$2 |                                      |
-| Amazon CloudWatch và SNS          | Flow Logs, container logs, metrics, alarms và gửi email cảnh báo.                                                                  |                           $5,61 | ~$5–6 |                                      |
-| AWS Secrets Manager và Amazon ECR | Lưu secrets và container images.                                                                                                     | ~$2 |                                ~$3 |                                      |
-| **Tổng chi phí/tháng**    |                                                                                                                                        |  **$68,2** | **~$170–190** |                                      |
+| Dịch vụ                          | Cấu hình theo kiến trúc hiện tại                                                                                                 |                                                   Chi phí/tháng | Chi phí ước tính tối đa/tháng |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------: | -----------------------------------: |
+| Amazon ECS (Fargate)               | Chạy backend container trên ECS; Production dùng 2 tasks trên 2 AZ với Auto Scaling, ví dụ 0,5 vCPU và 1 GB RAM cho mỗi task. |                                                  $9,86 | ~$20–35 |                                      |
+| Amazon RDS MySQL                   | Production dùng Multi-AZ: Primary ở AZ A và Standby ở AZ B.                                                                        |                                                     $11,78 | ~$50 |                                      |
+| NAT Gateway, ALB và Amazon VPC    | Hai NAT Gateway và ALB cho Production; dashboard hiện gộp một phần chi phí vào**EC2 – Other** và **VPC**.         |                                                 $32,80 | ~$82–84 |                                      |
+| Amazon CloudFront                  | Phân phối static web từ S3 và định tuyến API; giả định khoảng 100 GB truyền dữ liệu.                                     | $0.00 (Free Tier cho 1 TB) |           $0.00 (Free Tier cho 1 TB) |                                      |
+| Amazon S3                          | Lưu static web, media và logs; giả định khoảng 50 GB.                                                                            |                          ~$2 |                                ~$2 |                                      |
+| Amazon CloudWatch và SNS          | Flow Logs, container logs, metrics, alarms và gửi email cảnh báo.                                                                  |                                                    $5,61 | ~$5–6 |                                      |
+| AWS Secrets Manager và Amazon ECR | Lưu secrets và container images.                                                                                                     |                          ~$2 |                                ~$3 |                                      |
+| **Tổng chi phí/tháng**    |                                                                                                                                        |                           **$68,2** | **~$160–180** |                                      |
 
 ### 6.2 Chiến lược tối ưu chi phí
 

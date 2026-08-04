@@ -1,99 +1,125 @@
 ---
-title : "VPC Endpoint Policies"
-date : 2024-01-01
-weight : 5
-chapter : false
-pre : " <b> 5.5. </b> "
+title: "Checking ECS, CI/CD Pipeline, ALB, and CloudWatch"
+date: 2026-08-03
+weight: 5
+chapter: false
+pre: " <b> 5.5. </b> "
 ---
 
-When you create an interface or gateway endpoint, you can attach an endpoint policy to it that controls access to the service to which you are connecting. A VPC endpoint policy is an IAM resource policy that you attach to an endpoint. If you do not attach a policy when you create an endpoint, AWS attaches a default policy for you that allows full access to the service through the endpoint.
+## Check ECR and ECS status
 
-You can create a policy that restricts access to specific S3 buckets only. This is useful if you only want certain S3 Buckets to be accessible through the endpoint.
+### Check Amazon ECR repositories
 
-In this section you will create a VPC endpoint policy that restricts access to the S3 bucket specified in the VPC endpoint policy.
+The two repositories for the frontend and backend have been created, contain images that ECS can pull, and are working normally.
 
-![endpoint diagram](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+- **neonfoodmap-backend:** stores images pulled when backend ECS tasks are deployed.
 
-#### Connect to an EC2 instance and verify connectivity to S3
+{{< event-image src="images/5-Workshop/5.5-Policy/picECR1.jpg" alt="Status of the NeonFoodMap backend ECR repository" >}}
 
-1. Start a new AWS Session Manager session on the instance named Test-Gateway-Endpoint. From the session, verify that you can list the contents of the bucket you created in Part 1: Access S3 from VPC:
+- **neonfoodmap-frontend:** stores images pulled when the frontend service is deployed.
 
-```
-aws s3 ls s3://\<your-bucket-name\>
-```
-![test](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/test1.png)
+{{< event-image src="images/5-Workshop/5.5-Policy/picECR2.jpg" alt="Status of the NeonFoodMap frontend ECR repository" >}}
 
-The bucket contents include the two 1 GB files uploaded in earlier.
+### Check the cluster and ECS services
 
-2. Create a new S3 bucket; follow the naming pattern you used in Part 1, but add a '-2' to the name. Leave other fields as default and click create
+In **NeonFoodmap-cluster**, confirm the following:
 
-![create bucket](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/create-bucket.png)
+- **Cluster status:** `Active`.
+- **Services:** `2 active` services: `svc-neonfoodmap-be` and `svc-neonfoodmap-fe`.
+- **Tasks:** `4 running`; each service keeps `2/2 Tasks running`.
 
-Successfully create bucket
+{{< event-image src="images/5-Workshop/5.5-Policy/picECSCheck2.jpg" alt="NeonFoodMap ECS cluster and service status" >}}
 
-![Success](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/create-bucket-success.png)
+### Check tasks and private IP addresses
 
-3. Navigate to: Services > VPC > Endpoints, then select the Gateway VPC endpoint you created earlier. Click the Policy tab. Click Edit policy.
+Open the **Tasks** tab to confirm that Fargate containers pulled their images from ECR and started successfully.
 
-![policy](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/policy1.png)
+- **Launch type:** `Fargate`, platform version `1.4.0`.
+- **Last / Desired status:** all four tasks are `Running / Running`.
+- **Frontend:** `svc-neonfoodmap-fe` uses task definition revision `:17`, with private IPs `10.0.24.199` and `10.0.12.222`.
+- **Backend:** `svc-neonfoodmap-be` uses task definition revision `:36`, with private IPs `10.0.9.254` and `10.0.30.15`.
 
-The default policy allows access to all S3 Buckets through the VPC endpoint.
+{{< event-image src="images/5-Workshop/5.5-Policy/picECSCheck3.jpg" alt="NeonFoodMap ECS tasks and services" >}}
 
-4. In Edit Policy console, copy & Paste the following policy, then replace yourbucketname-2 with your 2nd bucket name. This policy will allow access through the VPC endpoint to your new bucket, but not any other bucket in Amazon S3. Click Save to apply the policy.
+### Check container logs and health checks
 
-```
-{
-  "Id": "Policy1631305502445",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1631305501021",
-      "Action": "s3:*",
-      "Effect": "Allow",
-      "Resource": [
-      				"arn:aws:s3:::yourbucketname-2",
-       				"arn:aws:s3:::yourbucketname-2/*"
-       ],
-      "Principal": "*"
-    }
-  ]
-}
-```
+Review CloudWatch Logs for `svc-neonfoodmap-be` to confirm that the application responds normally to health checks:
 
-![custom policy](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/policy2.png)
+- **Target path:** `GET /health` HTTP/1.1.
+- **HTTP status:** continuous `200 OK` responses from private IP addresses.
+- **Result:** the application receives requests and responds normally; no service interruption has been recorded.
 
-Successfully customize policy
+{{< event-image src="images/5-Workshop/5.5-Policy/picECSCheck1.jpg" alt="CloudWatch logs and backend ECS service health checks" >}}
 
-![success](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/success.png)
+## Check CI/CD deployment status
 
-5. From your session on the Test-Gateway-Endpoint instance, test access to the S3 bucket you created in Part 1: Access S3 from VPC
-```
-aws s3 ls s3://<yourbucketname>
-```
+After configuring the automated pipeline, verify the deployment path from GitHub Actions to Amazon ECS.
 
-This command will return an error because access to this bucket is not permitted by your new VPC endpoint policy:
+### Check the GitHub Actions CI/CD pipeline
 
-![error](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/error.png)
+Review the workflow run for `NeonFoodmap CI/CD Pipeline`.
 
-6. Return to your home directory on your EC2 instance ` cd~ `
+{{< event-image src="images/5-Workshop/5.5-Policy/picCICD3.jpg" alt="NeonFoodMap CI/CD pipeline" >}}
 
-+ Create a file ```fallocate -l 1G test-bucket2.xyz ```
-+ Copy file to 2nd bucket ```aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>```
+### Check the backend deployment
 
-![success](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/test2.png)
+Verify `svc-neonfoodmap-be` after it receives the deployment request from GitHub Actions:
 
-This operation succeeds because it is permitted by the VPC endpoint policy.
+- **Deployment status:** `Success` (`Active`).
+- **Circuit breaker / health check:** `Monitoring complete` and `Configured`; no rollback error was recorded.
 
-![success](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/test2-success.png)
+{{< event-image src="images/5-Workshop/5.5-Policy/picCICD1.jpg" alt="Backend ECS deployment result" >}}
 
-+ Then we test access to the first bucket by copy the file to 1st bucket `aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>`
+### Check the frontend deployment
 
-![fail](https://thuy0an.github.io/aws-learning-journey-fcaj/images/5-Workshop/5.5-Policy/test2-fail.png)
+Verify `svc-neonfoodmap-fe`:
 
-This command will return an error because access to this bucket is not permitted by your new VPC endpoint policy.
+- **Deployment status:** `Success` (`Active`).
+- **Circuit breaker / health check:** `Monitoring complete` and `Configured`, so service remains available during the update.
 
-#### Part 3 Summary:
+{{< event-image src="images/5-Workshop/5.5-Policy/picCICD2.jpg" alt="Frontend ECS deployment result" >}}
 
-In this section, you created a VPC endpoint policy for Amazon S3, and used the AWS CLI to test the policy. AWS CLI actions targeted to your original S3 bucket failed because you applied a policy that only allowed access to the second bucket you created. AWS CLI actions targeted for your second bucket succeeded because the policy allowed them. These policies can be useful in situations where you need to control access to resources through VPC endpoints.
+## Check Application Load Balancing
 
+Confirm that `ALB-NeonFoodMap` routes traffic correctly with five path-based rules and that all four task IPs are `Healthy`.
 
+{{< event-image src="images/5-Workshop/5.5-Policy/picALB.jpg" alt="ALB routing and healthy targets" >}}
+
+## Check the CloudWatch dashboard and monitoring
+
+Amazon CloudWatch provides centralized monitoring for the ECS cluster, `ALB-NeonFoodMap`, and automated alerts.
+
+### 1. CloudWatch alarms
+
+**ECS CPU alarm (`ECS-Backend-HighCPU-Alarm`):** watches `TaskCpuUtilization` at `>= 80%` for one five-minute data point. Its current state is **OK** because CPU use is low.
+
+**ALB 5XX error alarm (`ALB-5XX-Error-Alarm`):** watches `HTTPCode_Target_5XX_Count` at `>= 10` for one one-minute data point. Its state is **Insufficient data** because no server-side 5XX errors occurred during the observed period.
+
+{{< event-image src="images/5-Workshop/5.5-Policy/CloudWatchOverview.jpg" alt="CloudWatch alarms overview" >}}
+
+### 2. ECS cluster metrics
+
+Monitoring `NeonFoodmap-cluster` shows stable resource use:
+
+- **CPU utilization:** low on average, peaking at `48.96%`, below the 80% alert threshold.
+- **Memory utilization:** around `25.49%`.
+- **Disk utilization:** highest value `1.56%`.
+- **Network traffic:** peak `32.41 KB/s`.
+- **Service and task count:** `2` active services and `4` running tasks; task count reached `8` during deployments or scaling.
+
+{{< event-image src="images/5-Workshop/5.5-Policy/CloudWatchECS.jpg" alt="CloudWatch ECS metrics" >}}
+
+### 3. Application Load Balancer health and performance
+
+The `ALB-NeonFoodMap` dashboard reports:
+
+- **Availability and errors:** `100%` availability and no server-side `5XX` errors.
+- **Requests:** peak traffic of `252 requests/period`.
+- **Latency:** very low, from `3.6 × 10⁻⁴ ms` to `5.2 × 10⁻³ ms`, under `0.01 ms`.
+- **Client errors:** some `4XX` errors, peaking at `45 requests`, mainly from invalid endpoints or expired tokens.
+
+{{< event-image src="images/5-Workshop/5.5-Policy/CloudWatchALB.jpg" alt="CloudWatch ALB metrics" >}}
+
+### 4. Summary
+
+The ECS Fargate and ALB infrastructure runs steadily. CPU (about 25–48%) and memory (about 25%) have enough capacity. ALB latency is low, and no backend/server 5XX errors appeared during the test. CloudWatch alarms send SNS notifications when metrics exceed their thresholds, helping the team detect operational issues early.

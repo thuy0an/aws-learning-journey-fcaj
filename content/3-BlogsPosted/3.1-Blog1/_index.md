@@ -1,31 +1,48 @@
 ---
 title: "Blog 1"
-date: 2024-01-01
+date: 2026-08-02
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# KIRO POWERS
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+When vibe coding, FCAJ members often face these issues:
 
-Key points to know:
+- Every new project needs to be configured again from the beginning.
+- Teams find it difficult to keep the same setup, which can lead to inconsistent code.
+- Loading every tool at once causes context bloat, wastes tokens, and reduces the AI's focus.
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+Kiro Powers was created to solve this problem. Instead of manually configuring every new project, we can package tools, instructions, and automation into one unit and share it with the whole team. After one installation, everyone uses the same setup.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+A Power is a collection of components:
 
-...Image...
+- A `POWER.md` file containing documentation and activation keywords.
+- MCP servers that provide execution tools.
+- Steering files that define workflows and standards.
+- Hooks that automate actions based on events.
 
-...Link...
+The important difference is that a Power is **not preloaded**. It activates only when a prompt contains the right keyword. This gives an agent only the knowledge and tools it needs, avoiding context bloat.
 
-...Guide...
+Anyone can create a Power with Build a Power, or import one from GitHub or a local folder through Add Custom Power. After it is complete, the team can push it to a Git repository and install the same setup together.
+
+## Quick example: Zapier Power
+
+After installing the “Zapier” Power in the Kiro Powers panel, an agent can connect to and automate thousands of external applications.
+
+This Power includes `POWER.md` keywords such as `zapier`, `automation`, `webhook`, `youtube`, and `discord`, together with the Zapier MCP and steering files for data-integration workflows. A prompt such as “Get the latest video from YouTube channel Y and send it to channel X...” or a Zapier workflow link can activate the Power. The agent then gets connection context, maps data, creates the message format, and automates the flow instead of requiring manual code.
+
+Kiro Powers is more than a utility. It is a way to turn expertise into reusable modules that can be shared with a team.
+
+{{< event-image src="images/3-Blog/Blog1.jpg" alt="Blog 1" >}}
+
+## References
+
+1. [Kiro Powers documentation](https://kiro.dev/docs/powers/)
+2. [Introducing Kiro Powers](https://kiro.dev/blog/introducing-powers/)
+3. [Kiro Powers introduction video](https://youtu.be/kEOmuVyqfMU?si=p9iFGMNMUK9rbYAp)
+
+## Link Post
+
+[AWS Study Group post](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2232309990867294/)

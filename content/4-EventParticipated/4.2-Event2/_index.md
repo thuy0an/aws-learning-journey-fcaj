@@ -21,7 +21,7 @@ pre: " <b> 4.2. </b> "
 
 - **Huy** — AWS Cloud Practitioner (CLF-C02) learning path, exam structure, and study tips.
 - **Son** — HUFLIT alumnus and Infrastructure Reliability Engineer; monitoring, NOC, and SLA practices.
-- **Security speaker** — Demonstration of a Security Agent for finding application vulnerabilities.
+- **Nghia Tran** — Demonstration of a Security Agent for finding application vulnerabilities.
 
 ### Key Highlights
 
@@ -66,3 +66,4 @@ The event offered a realistic view of NOC operations and system management. Live
 #### Event Photos
 
 *Add event photos here.*
+{{< event-image src="images/4-EventParticipated/Event_11_7_pic1.jpg" alt="A moment from the AWS event" >}}

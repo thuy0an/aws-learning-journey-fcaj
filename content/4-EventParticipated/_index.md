@@ -5,38 +5,32 @@ weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
-During my internship, I participated in three events. Each one was a memorable experience that provided useful knowledge and valuable experiences.
+
+During my internship, I participated in four events. Each one provided useful knowledge, practical experience, and memorable moments.
 
 ### [Event 1](4.1-Event1/)
 
-&emsp;**Event Name:** AWS Enterprise Cloud Architectures and Industry Application
-
-&emsp;**Date & Time:** 09:00, July 4, 2026
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
-
+&emsp;**Event Name:** AWS: Enterprise Cloud Architectures and Industry Application  
+&emsp;**Date & Time:** 09:00, July 4, 2026  
+&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City  
 &emsp;**Role:** Attendee
-
----
 
 ### [Event 2](4.2-Event2/)
 
-&emsp;**Event Name:** FCAJ Community Day
-
-&emsp;**Date & Time:** 09:00, July 11, 2026
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
-
+&emsp;**Event Name:** FCAJ Community Day  
+&emsp;**Date & Time:** 09:00, July 11, 2026  
 &emsp;**Role:** Attendee
-
----
 
 ### [Event 3](4.3-Event3/)
 
-&emsp;**Event Name:** FCAJ — Agentic AI Build Week
+&emsp;**Event Name:** FCAJ – Agentic AI Build Week  
+&emsp;**Date & Time:** 09:00, July 25, 2026  
+&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City  
+&emsp;**Role:** Attendee
 
-&emsp;**Date & Time:** 09:00, July 25, 2026
+### [Event 4](4.4-Event4/)
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
-
+&emsp;**Event Name:** AWS FCAJ Agent Forge – Deepdive (Day 1)  
+&emsp;**Date & Time:** 09:00, August 1, 2026  
+&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City  
 &emsp;**Role:** Attendee

@@ -1,31 +1,47 @@
 ---
 title: "Blog 1"
-date: 2024-01-01
+date: 2026-08-02
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# KIRO POWERS
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+Trong quá trình vibe coding, anh em FCAJ chắc hẳn từng gặp các trường hợp sau:
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+- Mỗi dự án mới lại phải tốn công cấu hình lại từ đầu.
+- Team khó đồng bộ thiết lập, dẫn đến code thiếu nhất quán.
+- Nạp tất cả tool cùng lúc gây context bloat, làm lãng phí token và giảm độ tập trung của AI.
 
-Các điểm chính cần nắm:
+Kiro Powers ra đời để giải quyết điểm nghẽn này. Thay vì cấu hình thủ công mỗi khi mở dự án mới, chúng ta có thể đóng gói công cụ, hướng dẫn và tự động hóa thành một đơn vị duy nhất, rồi chia sẻ cho cả team. Chỉ cần cài một lần, mọi người đều dùng chung một thiết lập.
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+Một Power là tập hợp các thành phần:
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+- File `POWER.md` chứa tài liệu và từ khóa kích hoạt.
+- Các MCP server cung cấp công cụ thực thi.
+- Steering files định nghĩa quy trình và quy chuẩn.
+- Hooks để tự động hóa theo sự kiện.
 
-...Hình ảnh...
+Điểm khác biệt quan trọng là Power **không tải sẵn**. Nó chỉ được kích hoạt khi câu lệnh chứa từ khóa phù hợp. Nhờ vậy, agent chỉ nhận đúng kiến thức và công cụ cần thiết, tránh tình trạng context bloat.
 
-...Link...
+Mỗi người đều có thể tạo Power riêng bằng công cụ Build a Power, hoặc import từ GitHub và thư mục local qua Add Custom Power. Sau khi hoàn thiện, chỉ cần đẩy lên Git repository là cả team có thể cài đặt đồng bộ.
 
-...Hướng dẫn...
+## Ví dụ nhanh: Power Zapier
+
+Chỉ cần cài Power “Zapier” trong Kiro Powers panel, agent đã có thể kết nối và tự động hóa hàng nghìn ứng dụng bên ngoài.
+
+Power này chứa `POWER.md` với các từ khóa như `zapier`, `automation`, `webhook`, `youtube`, `discord`, kèm MCP Zapier và steering hướng dẫn workflow tích hợp dữ liệu. Từ đó, chỉ cần chat “Tự động lấy video mới nhất từ kênh YouTube Y gửi qua kênh ứng dụng X...” hoặc dán link kịch bản Zapier là Power tự động kích hoạt. Agent sẽ lấy context kết nối, map dữ liệu, sinh cấu trúc thông báo và xử lý tự động thay vì code thủ công.
+
+Kiro Powers không chỉ là tiện ích; đây là cách biến chuyên môn thành module có thể tái sử dụng và chia sẻ.
+
+{{< event-image src="images/3-Blog/Blog1.jpg" alt="Blog1" >}}
+
+## Tài liệu tham khảo
+
+1. [Kiro Powers documentation](https://kiro.dev/docs/powers/)
+2. [Introducing Kiro Powers](https://kiro.dev/blog/introducing-powers/)
+3. [Video giới thiệu Kiro Powers](https://youtu.be/kEOmuVyqfMU?si=p9iFGMNMUK9rbYAp)
+
+## Đường dẫn đăng bài
+
+[Link bài đăng tại AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2232309990867294/)

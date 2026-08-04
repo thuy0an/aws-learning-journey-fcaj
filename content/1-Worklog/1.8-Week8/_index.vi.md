@@ -12,19 +12,18 @@ pre: " <b> 1.8. </b> "
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc                                                                                       | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                                                                                 |
-| ---- | ------------------------------------------------------------------------------------------------- | ---------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| 2    | - Rà soát AWS Cost Explorer/Budgets<br />- Cập nhật kiến trúc hệ thống bản hoàn chỉnh | 11/08/2026       | 11/08/2026         | -                                                                                                                 |
-| 3    | -Kiểm tra hoàn thiện CloudFront, DNS và khả năng truy cập hệ thống                       | 12/08/2026       | 12/08/2026         | [Amazon CloudFront Document](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) |
-| 4    | -Hoàn thiện workshop, kiểm tra chức năng dự án                                             | 13/08/2026       | 13/08/2026         | -                                                                                                                 |
-| 5    | -Hoàn thiện worklog, proposal, thông tin dự án                                               | 14/08/2026       | 15/08/2026         | -                                                                                                                 |
-| 6    | -Hoàn thiện worklog, proposal, thông tin dự án                                               | 15/08/2026       | 15/08/2026         | -                                                                                                                 |
+| Thứ | Công việc                                                                                                                      | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                                                                                 |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| 2    | - Kiểm tra và chỉnh sửa các lỗi phát sinh khi chạy hệ thống<br />- Cập nhật kiến trúc hệ thống bản hoàn chỉnh | 11/08/2026       | 11/08/2026         | -                                                                                                                 |
+| 3    | -Kiểm tra hoàn thiện CloudFront, DNS và khả năng truy cập hệ thống                                                      | 12/08/2026       | 12/08/2026         | [Amazon CloudFront Document](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) |
+| 4    | -Hoàn thiện workshop, kiểm tra chức năng dự án                                                                            | 13/08/2026       | 13/08/2026         | -                                                                                                                 |
+| 5    | -Hoàn thiện worklog, proposal, thông tin dự án                                                                              | 14/08/2026       | 15/08/2026         | -                                                                                                                 |
+| 6    | -Hoàn thiện worklog, proposal, thông tin dự án                                                                              | 15/08/2026       | 15/08/2026         | -                                                                                                                 |
 
 ### Kết quả đạt được tuần 8:
 
 * Kiểm soát vận hành và chi phí:
 
-  * Rà soát chi phí sử dụng tài nguyên thông qua AWS Cost Explorer và AWS Budgets.
   * Rà soát quyền truy cập, cấu hình bảo mật và tình trạng hoạt động của các dịch vụ AWS.
 * Hoàn thiện hệ thống:
 

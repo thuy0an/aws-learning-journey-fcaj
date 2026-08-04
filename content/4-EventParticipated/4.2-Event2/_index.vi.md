@@ -23,7 +23,7 @@ Sự kiện mang đến góc nhìn gần với môi trường doanh nghiệp, gi
 
 - **Anh Huy** — Chia sẻ lộ trình, cấu trúc bài thi và mẹo ôn thi chứng chỉ AWS Cloud Practitioner (CLF-C02).
 - **Anh Sơn** — Cựu sinh viên HUFLIT, hiện là Infrastructure Reliability Engineer; chia sẻ về giám sát hạ tầng, trung tâm vận hành NOC và cam kết chất lượng dịch vụ SLA.
-- **Diễn giả chuyên về Security** — Trình diễn cách triển khai Security Agent để tìm kiếm lỗ hổng bảo mật trên ứng dụng.
+- **Anh Nghĩa** — Trình diễn cách triển khai Security Agent để tìm kiếm lỗ hổng bảo mật trên ứng dụng.
 
 ### Nội dung nổi bật
 
@@ -81,7 +81,7 @@ Các chia sẻ về NOC và vận hành hệ thống giúp em hình dung rõ hơ
 
 #### Tính tương tác cao
 
-Diễn giả anh Sơn không chỉ trình bày qua slide mà còn minh họa tình huống ứng dụng không thể đăng nhập để làm rõ vai trò của hệ thống cảnh báo và giám sát chủ động.
+Diễn giả Anh Sơn không chỉ trình bày qua slide mà còn minh họa tình huống ứng dụng không thể đăng nhập để làm rõ vai trò của hệ thống cảnh báo và giám sát chủ động.
 
 #### Bài học rút ra
 
