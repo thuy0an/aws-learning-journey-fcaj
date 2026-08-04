@@ -10,7 +10,7 @@ pre: " <b> 3. </b> "
 ⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
 {{% /notice %}}
 
-Tại đây sẽ là phần liệt kê, giới thiệu các blogs mà các bạn đã đăng trên [AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj). Ví dụ:
+Tại đây là phần liệt kê, giới thiệu các blog đã đăng trên [AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj).
 
 ### [Blog 1 - KIRO POWERS](3.1-Blog1/)
 
@@ -20,5 +20,6 @@ Blog này giới thiệu Kiro Powers: cách đóng gói công cụ, hướng d�
 
 Blog này giới thiệu cách sử dụng AWS Systems Manager Maintenance Windows và Automation runbook để bật/tắt Amazon RDS theo lịch, giúp tối ưu chi phí cho các môi trường không cần hoạt động 24/7.
 
-###  [Blog 3 - ...](3.3-Blog3/)
-Blog này giới thiệu Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+### [Blog 3 - KIẾN THỨC NỀN TẢNG CHO CLOUD COMPUTING](3.3-Blog3/)
+
+Blog này chia sẻ cách các kiến thức nền tảng như System Design, API, Networking, Cơ sở dữ liệu và Hệ điều hành giúp người học tiếp cận dịch vụ Cloud nhanh hơn, hiểu sâu hơn và áp dụng hiệu quả vào các kiến trúc thực tế.

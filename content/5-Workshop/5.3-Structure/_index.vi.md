@@ -34,7 +34,7 @@ VPC được tạo bằng **VPC Console → Create VPC → VPC and more**, thay 
 | Group                        | `NeonFoodmap-Frontend-Devs` | Quản lý S3/CloudFront; chỉ đọc ECR và CloudWatch theo template.                                                                             |
 | OIDC Provider                | `GitHubOIDCProvider`        | Liên kết`token.actions.githubusercontent.com` với audience `sts.amazonaws.com` để GitHub Actions dùng temporary credential từ AWS STS. |
 
-{{< event-image src="images/5-Workshop/5.3-S3-vpc/picUserGroup.jpg" alt="IAM User Group" >}}
+{{< event-image src="images/5-Workshop/5.3-Structure/picUserGroup.jpg" alt="IAM User Group" >}}
 
 ## IAM Roles
 
@@ -45,8 +45,8 @@ VPC được tạo bằng **VPC Console → Create VPC → VPC and more**, thay 
 | `NeonFoodmap-GitHub-Actions-Role`    | GitHub Actions qua OIDC, không dùng access key       | Push image lên ECR và cập nhật ECS service; trust policy chỉ chấp nhận repo`HaoWasabi/NeonFoodmap`.              |
 | `NeonFoodmap-EC2-Backend-Role`       | EC2 backend/Instance Profile (phương án dự phòng) | Amazon S3 và CloudWatch Logs khi backend chạy trên EC2 thay vì ECS.                                                   |
 
-{{< event-image src="images/5-Workshop/5.3-S3-vpc/picDetailRole.jpg" alt="IAM User Group" >}}
+{{< event-image src="images/5-Workshop/5.3-Structure/picDetailRole.jpg" alt="IAM User Group" >}}
 
-{{< event-image src="images/5-Workshop/5.3-S3-vpc/picIAMRole.jpg" alt="IAM User Group" >}}
+{{< event-image src="images/5-Workshop/5.3-Structure/picIAMRole.jpg" alt="IAM User Group" >}}
 
 `ECS-Backend-Role` và `ECS-TaskExecution-Role` là hai role **tách biệt**: execution role phục vụ nền tảng ECS pull image/ghi log, còn backend role phục vụ code đang chạy trong container. GitHub Actions cũng có role riêng qua OIDC để pipeline không dùng quyền runtime của ứng dụng. Cách tách này giảm phạm vi ảnh hưởng khi một thành phần bị cấp quyền không đúng.

@@ -16,6 +16,6 @@ This blog introduces Kiro Powers: a way to package tools, instructions, MCP serv
 
 This blog explains how to use AWS Systems Manager Maintenance Windows and Automation runbooks to start and stop Amazon RDS on a schedule, helping reduce costs for environments that do not need to run 24/7.
 
-### [Blog 3 - SESSION POLICIES IN AMAZON EKS POD IDENTITY](3.3-Blog3/)
+### [Blog 3 - FOUNDATIONAL KNOWLEDGE FOR CLOUD COMPUTING](3.3-Blog3/)
 
-This blog explains Amazon EKS Pod Identity session policies, which help limit IAM permissions for each pod while following the least-privilege principle.
+This blog shares how foundational knowledge—such as system design, APIs, networking, databases, and operating systems—helps learners understand cloud services more quickly and apply them effectively to real-world architectures.
