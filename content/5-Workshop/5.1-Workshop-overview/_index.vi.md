@@ -21,15 +21,42 @@ Doanh nghiệp ẩm thực & du lịch thường gặp khó khăn khi thông tin
 
 ## Kiến trúc tổng quan
 
-Hệ thống được tổ chức theo mô hình multi-tier trong VPC, trải trên hai Availability Zone để hỗ trợ tính sẵn sàng:
+NeonFoodMap dùng kiến trúc **multi-tier** trong Amazon VPC tại `ap-southeast-1`, trải trên hai Availability Zone để tăng tính sẵn sàng. Frontend tĩnh được phân phối qua CloudFront/S3; các container ứng dụng chạy trên ECS Fargate trong private subnet; dữ liệu nằm trên RDS MySQL private.
 
-* **Frontend:** React SPA, lưu trữ trên S3 Static Website, phân phối qua Amazon CloudFront.
-* **Backend:** Backend Django/Gunicorn chạy trên Amazon ECS Fargate (trong private subnet, tự động tăng/giảm số task theo tải), đứng sau Application Load Balancer.
-* **Dữ liệu:** MySQL trên RDS (trong private database subnet), S3 lưu trữ tách biệt theo mục đích (frontend, media, audio, logs).
-* **Bảo mật & vận hành:** IAM/CloudFormation quản lý quyền và hạ tầng, CloudWatch theo dõi log/metric, cảnh báo tự động qua Amazon SNS, AWS Budgets và Cost Anomaly Detection.
-* **CI/CD:** GitHub Actions xác thực qua OIDC/AWS STS, tự động build/push Docker image lên Amazon ECR và cập nhật ECS service.
+### Sơ đồ kiến trúc tổng thể
 
 {{< event-image src="images/2-Proposal/platform_architecture.jpg" alt="Kiến trúc tổng thể nền tảng trên AWS" >}}
+
+### Kiến trúc kết nối dịch vụ
+
+{{< event-image src="images/2-Proposal/edge_architecture.jpg" alt="Kiến trúc kết nối dịch vụ trên AWS" >}}
+
+- Người dùng truy cập nội dung tĩnh qua **CloudFront**; các request ứng dụng đi qua **Application Load Balancer (ALB)**.
+- ALB nhận HTTP/HTTPS, thực hiện health check và dùng rule theo đường dẫn để chuyển request API đến Backend Service.
+- ECS task chỉ nằm trong private subnet. **AWS Cloud Map** cung cấp service discovery nội bộ, nhờ đó container giao tiếp bằng DNS ổn định thay vì IP thay đổi theo từng task revision.
+
+### Năm lớp kiến trúc
+
+| Lớp | Thành phần | Vai trò chính |
+| --- | --- | --- |
+| CI/CD | GitHub Repository, GitHub Actions, Docker Build, AWS STS, Amazon ECR | Tự động kiểm thử, build image, xác thực OIDC và triển khai phiên bản mới. |
+| Presentation | Amazon CloudFront, Amazon S3 Static Website | Phân phối frontend với độ trễ thấp, tăng tốc truy cập và giảm tải cho backend. |
+| Application | ALB, ECS Cluster, Backend Service, Frontend Service | Chạy ứng dụng trên Fargate, định tuyến request, rolling update và khởi động lại task khi lỗi. |
+| Data | Amazon RDS MySQL Multi-AZ | Lưu dữ liệu nghiệp vụ trong private database subnet; tăng chịu lỗi và hỗ trợ failover. |
+| Monitoring | Amazon CloudWatch, Amazon SNS | Thu thập log/metric và gửi email alert khi phát hiện bất thường. |
+
+### ECS Cluster và điều hướng lưu lượng
+
+ECS Cluster gồm hai service độc lập, giúp mỗi thành phần có thể được cập nhật và mở rộng theo nhu cầu riêng:
+
+| Service | Triển khai | Trách nhiệm |
+| --- | --- | --- |
+| **Backend Service** | Django REST API trong Docker Container trên ECS Fargate | Authentication, business logic, truy cập database và upload media. |
+| **Frontend Service** | React Application trong Docker Container trên ECS Fargate | Phục vụ giao diện containerized và gọi backend qua ALB. |
+
+**Service Discovery:** AWS Cloud Map quản lý DNS nội bộ giữa các container trong ECS Cluster.
+
+**Load Balancing:** ALB tiếp nhận HTTP/HTTPS, kiểm tra sức khỏe target và chuyển request API đến Backend Service.
 
 ## Tech stack
 
@@ -43,6 +70,25 @@ Hệ thống được tổ chức theo mô hình multi-tier trong VPC, trải tr
 | Container       | Amazon ECR, Amazon ECS Fargate                                                              | Lưu Docker image và vận hành container frontend/backend                                                 |
 | CI/CD           | GitHub Actions, GitHub OIDC, AWS STS, IAM Role                                              | Kiểm tra, build, push image và deploy không cần AWS access key dài hạn                                |
 | Monitoring/Cost | Amazon CloudWatch, Amazon SNS, AWS Budgets, Cost Anomaly Detection                          | Thu log/metric, cảnh báo kỹ thuật và theo dõi chi phí                                                |
+
+## Quy trình triển khai và vận hành
+
+Quy trình phát hành tự động bắt đầu khi developer push source code lên nhánh chính:
+
+1. **Developer push source code** → **GitHub Actions trigger workflow**.
+2. Workflow kiểm thử, **build Docker image** và xác thực với AWS bằng OIDC qua **AWS STS**.
+3. AWS STS cấp temporary credential; image được **push lên Amazon ECR**.
+4. ECS **pull image** mới và thực hiện **rolling update** để thay thế task mà không làm gián đoạn service.
+5. ALB tiếp tục chuyển request đến các task healthy; Backend Service truy cập **RDS MySQL** và upload media/audio lên **Amazon S3**.
+6. **CloudWatch** thu thập ECS/container/application logs và metrics; **Amazon SNS** gửi email khi có cảnh báo hoặc sự cố.
+
+Luồng rút gọn:
+
+```text
+Developer → GitHub Actions → Docker Build → OIDC / AWS STS → Amazon ECR
+          → ECS Pull Image → Rolling Update → ALB → Backend → RDS / S3
+                                                   └→ CloudWatch → SNS Email
+```
 
 ## Kết quả đạt được
 

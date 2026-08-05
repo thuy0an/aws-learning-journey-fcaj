@@ -1,5 +1,5 @@
 ---
-title: "Checking ECS, CI/CD Pipeline, ALB, and CloudWatch"
+title: "Verifying deployment and system monitoring"
 date: 2026-08-03
 weight: 5
 chapter: false

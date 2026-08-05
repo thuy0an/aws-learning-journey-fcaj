@@ -22,6 +22,6 @@ The main services are:
 2. [Prerequisites](5.2-Prerequiste/)
 3. [System architecture](5.3-Structure/)
 4. [Deployment steps](5.4-Onprem/)
-5. [Check ECS deployment, CI/CD pipeline, ALB, and CloudWatch](5.5-Policy/)
+5. [Verify deployment and system monitoring](5.5-Policy/)
 6. [Application interface and features](5.6-Project-Visual/)
 7. [Clean up resources](5.7-Cleanup/)

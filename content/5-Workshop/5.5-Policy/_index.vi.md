@@ -1,5 +1,5 @@
 ---
-title: "Kiểm tra triển khai ECS, CI/CD Pipeline, ALB, CloudWatch"
+title: "Xác minh triển khai và giám sát hệ thống"
 date: 2026-08-03
 weight: 5
 chapter: false
