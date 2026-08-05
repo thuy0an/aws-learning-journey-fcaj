@@ -133,7 +133,7 @@ Kiến trúc triển khai được xây dựng trên hai Availability Zone để
 | Amazon S3                          | Lưu static web, media và logs; giả định khoảng 50 GB.                                                                            |                          ~$2 |                                ~$2 |                                      |
 | Amazon CloudWatch và SNS          | Flow Logs, container logs, metrics, alarms và gửi email cảnh báo.                                                                  |                                                    $5,61 | ~$5–6 |                                      |
 | AWS Secrets Manager và Amazon ECR | Lưu secrets và container images.                                                                                                     |                          ~$2 |                                ~$3 |                                      |
-| **Tổng chi phí/tháng**    |                                                                                                                                        |                           **$68,2** | **~$160–180** |                                      |
+| **Tổng chi phí/tháng**    |                                                                                                                                        |                           **$64,05** | **~$166–184** |                                      |
 
 ### 6.2 Chiến lược tối ưu chi phí
 

@@ -5,7 +5,6 @@ weight: 3
 chapter: false
 pre: " <b> 3. </b> "
 ---
-
 This section lists the blogs published on [AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj).
 
 ### [Blog 1 - KIRO POWERS](3.1-Blog1/)
@@ -18,4 +17,4 @@ This blog explains how to use AWS Systems Manager Maintenance Windows and Automa
 
 ### [Blog 3 - FOUNDATIONAL KNOWLEDGE FOR CLOUD COMPUTING](3.3-Blog3/)
 
-This blog shares how foundational knowledge—such as system design, APIs, networking, databases, and operating systems—helps learners understand cloud services more quickly and apply them effectively to real-world architectures.
+This blog shares how foundational knowledge such as system design, APIs, networking, databases, and operating systems helps learners understand cloud services more quickly and apply them effectively to real-world architectures.

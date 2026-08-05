@@ -5,32 +5,31 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-
 # NeonFoodMap – Vinh Khanh Food Street Automated Audio Guide
 
 ## 1. Project Overview
 
 This project builds an automated audio-guide platform for visitors to **Vinh Khanh Food Street, District 4, Ho Chi Minh City**. It helps visitors explore food and cultural locations through multimedia content triggered by location or QR codes.
 
-| Criteria | Value |
-| --- | --- |
-| Project type | Automated audio-guide and digital tourism platform |
-| Deployment area | Vinh Khanh Food Street, District 4, Ho Chi Minh City |
-| Users | Visitors, local business partners, and administrators |
-| Technologies | Frontend on S3/CloudFront; backend containers on Amazon ECS Fargate; Amazon RDS MySQL and Amazon S3 |
-| AWS infrastructure | VPC across two Availability Zones, ECS Auto Scaling, and RDS Multi-AZ |
-| Operations | Docker, GitHub Actions, Amazon ECR, CloudWatch, and Amazon SNS |
+| Criteria           | Value                                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| Project type       | Automated audio-guide and digital tourism platform                                                  |
+| Deployment area    | Vinh Khanh Food Street, District 4, Ho Chi Minh City                                                |
+| Users              | Visitors, local business partners, and administrators                                               |
+| Technologies       | Frontend on S3/CloudFront; backend containers on Amazon ECS Fargate; Amazon RDS MySQL and Amazon S3 |
+| AWS infrastructure | VPC across two Availability Zones, ECS Auto Scaling, and RDS Multi-AZ                               |
+| Operations         | Docker, GitHub Actions, Amazon ECR, CloudWatch, and Amazon SNS                                      |
 
 ## 2. Objectives
 
 ### 2.1 Project Objectives
 
-| # | Objective | Measure |
-| --- | --- | --- |
-| 1 | Provide automated audio guides through location or QR codes. | Users can access POIs and play multimedia content. |
-| 2 | Manage POIs, audio, images, menus, and partner information in one place. | Data is managed through APIs and an admin interface. |
-| 3 | Deploy a scalable, secure, and monitored AWS system. | ECS Auto Scaling, RDS Multi-AZ, private subnets, CloudWatch, and SNS are configured. |
-| 4 | Automate releases. | Images are built, pushed to ECR, and deployed to ECS through GitHub Actions. |
+| # | Objective                                                                | Measure                                                                              |
+| - | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| 1 | Provide automated audio guides through location or QR codes.             | Users can access POIs and play multimedia content.                                   |
+| 2 | Manage POIs, audio, images, menus, and partner information in one place. | Data is managed through APIs and an admin interface.                                 |
+| 3 | Deploy a scalable, secure, and monitored AWS system.                     | ECS Auto Scaling, RDS Multi-AZ, private subnets, CloudWatch, and SNS are configured. |
+| 4 | Automate releases.                                                       | Images are built, pushed to ECR, and deployed to ECS through GitHub Actions.         |
 
 ### 2.2 Benefits
 
@@ -73,18 +72,18 @@ Static frontend content is stored in **Amazon S3 Static Website** and delivered 
 
 ### 4.2 Architecture Components
 
-| Layer | Service | Role |
-| --- | --- | --- |
-| Edge | Amazon CloudFront | Delivers static content from S3 and forwards API requests to the ALB. |
-| Frontend | Amazon S3 Static Website | Stores static application assets. |
-| Compute | Application Load Balancer | Receives API requests, performs health checks, and routes traffic to ECS. |
-| Compute | Amazon ECS Fargate | Runs backend containers in private subnets and scales as needed. |
-| Service discovery | AWS Cloud Map and Amazon Route 53 | Supports internal service discovery in the ECS cluster. |
-| CI/CD | GitHub Actions, AWS STS, Amazon ECR | Authenticates with OIDC, builds images, stores them, and deploys new versions. |
-| Data | Amazon RDS MySQL Multi-AZ | Stores business data with a synchronized standby database. |
-| Media | Amazon S3 and VPC Endpoint for S3 | Stores media and provides private access from the application. |
-| Security | AWS IAM and AWS Secrets Manager | Manages permissions and sensitive configuration. |
-| Observability | Amazon CloudWatch, Amazon SNS, and S3 Logs | Collects logs and metrics, sends alerts, and stores logs long term. |
+| Layer             | Service                                    | Role                                                                           |
+| ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------ |
+| Edge              | Amazon CloudFront                          | Delivers static content from S3 and forwards API requests to the ALB.          |
+| Frontend          | Amazon S3 Static Website                   | Stores static application assets.                                              |
+| Compute           | Application Load Balancer                  | Receives API requests, performs health checks, and routes traffic to ECS.      |
+| Compute           | Amazon ECS Fargate                         | Runs backend containers in private subnets and scales as needed.               |
+| Service discovery | AWS Cloud Map and Amazon Route 53          | Supports internal service discovery in the ECS cluster.                        |
+| CI/CD             | GitHub Actions, AWS STS, Amazon ECR        | Authenticates with OIDC, builds images, stores them, and deploys new versions. |
+| Data              | Amazon RDS MySQL Multi-AZ                  | Stores business data with a synchronized standby database.                     |
+| Media             | Amazon S3 and VPC Endpoint for S3          | Stores media and provides private access from the application.                 |
+| Security          | AWS IAM and AWS Secrets Manager            | Manages permissions and sensitive configuration.                               |
+| Observability     | Amazon CloudWatch, Amazon SNS, and S3 Logs | Collects logs and metrics, sends alerts, and stores logs long term.            |
 
 ### 4.3 Main Processing Flow
 
@@ -97,41 +96,39 @@ Static frontend content is stored in **Amazon S3 Static Website** and delivered 
 
 ### 4.4 AWS Well-Architected Framework
 
-| Pillar | Applied Solution |
-| --- | --- |
-| Operational Excellence | GitHub Actions CI/CD, CloudFormation, CloudWatch Logs, and SNS alerts. |
-| Security | IAM roles with least privilege, Secrets Manager, and private subnets. |
-| Reliability | ALB, ECS Auto Scaling, RDS Multi-AZ, two Availability Zones, and health checks. |
-| Performance Efficiency | CloudFront, ECS Fargate scaling, and S3 for media. |
-| Cost Optimization | ECS Auto Scaling and S3 Lifecycle. |
-| Sustainability | Scale resources based on demand and stop dev environments outside working hours. |
+| Pillar                 | Applied Solution                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| Operational Excellence | GitHub Actions CI/CD, CloudFormation, CloudWatch Logs, and SNS alerts.           |
+| Security               | IAM roles with least privilege, Secrets Manager, and private subnets.            |
+| Reliability            | ALB, ECS Auto Scaling, RDS Multi-AZ, two Availability Zones, and health checks.  |
+| Performance Efficiency | CloudFront, ECS Fargate scaling, and S3 for media.                               |
+| Cost Optimization      | ECS Auto Scaling and S3 Lifecycle.                                               |
+| Sustainability         | Scale resources based on demand and stop dev environments outside working hours. |
 
 ## 5. Timeline
 
-| Phase | Worklog Schedule | Activities |
-| --- | --- | --- |
-| Foundation and design | Weeks 1–3 | AWS account, IAM, Budgets, networking, EC2, S3, RDS, monitoring, backup, and architecture design. |
-| Development and infrastructure preparation | Week 4 | Agile planning, backend, RDS schema, Dockerfiles, CloudFormation, IAM, and security setup. |
-| Containerization and staging | Weeks 5–6 | Frontend, backend, APIs, ECR, ECS Fargate, ALB, RDS, Auto Scaling, monitoring, and staging tests. |
-| Deployment automation | Week 7 | GitHub Actions OIDC, automated image build/push, task-definition updates, and rollout monitoring. |
-| Content delivery and completion | Weeks 7–8 | CloudFront, DNS, access checks, cost and security review, testing, documentation, and final architecture. |
+| Phase                                      | Worklog Schedule | Activities                                                                                                |
+| ------------------------------------------ | ---------------- | --------------------------------------------------------------------------------------------------------- |
+| Foundation and design                      | Weeks 1–3       | AWS account, IAM, Budgets, networking, EC2, S3, RDS, monitoring, backup, and architecture design.         |
+| Development and infrastructure preparation | Week 4           | Agile planning, backend, RDS schema, Dockerfiles, CloudFormation, IAM, and security setup.                |
+| Containerization and staging               | Weeks 5–6       | Frontend, backend, APIs, ECR, ECS Fargate, ALB, RDS, Auto Scaling, monitoring, and staging tests.         |
+| Deployment automation                      | Week 7           | GitHub Actions OIDC, automated image build/push, task-definition updates, and rollout monitoring.         |
+| Content delivery and completion            | Weeks 7–8       | CloudFront, DNS, access checks, cost and security review, testing, documentation, and final architecture. |
 
 ## 6. Budget
 
 ### 6.1 Current and Maximum Estimated Cost
 
-| Service | Current Architecture Configuration | Current Monthly Cost | Maximum Estimated Monthly Cost |
-| --- | --- | ---: | ---: |
-| Amazon ECS (Fargate) | Backend containers; production uses two tasks across two AZs with Auto Scaling. | $9.86 | ~$20–35 |
-| Amazon RDS MySQL | Production Multi-AZ with primary and standby databases. | $11.78 | ~$50 |
-| NAT Gateway, ALB, and Amazon VPC | Two NAT Gateways and an ALB for production; the dashboard groups part of the cost under EC2–Other and VPC. | $32.80* | ~$82–84 |
-| Amazon CloudFront | Static delivery from S3 and API routing. | ~$4 | ~$8 |
-| Amazon S3 | Static website, media, and logs. | ~$2 | ~$2 |
-| Amazon CloudWatch and SNS | Logs, metrics, alarms, and email alerts. | $5.61 | ~$5–6 |
-| AWS Secrets Manager and Amazon ECR | Secrets and container images. | ~$2 | ~$3 |
-| **Total monthly cost** | Current dashboard cost and complete production architecture. | **$68.20** | **~$170–190** |
-
-\* $32.80 is the total of **EC2–Other ($25.32)** and **Amazon VPC ($7.48)**. Small rounding differences may occur.
+| Service                            | Current Architecture Configuration                                                                          |                                    Current Monthly Cost | Maximum Estimated Monthly Cost |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------: | -----------------------------: |
+| Amazon ECS (Fargate)               | Backend containers; production uses two tasks across two AZs with Auto Scaling.                             |                                        $9.86 | ~$20–35 |                                |
+| Amazon RDS MySQL                   | Production Multi-AZ with primary and standby databases.                                                     |                                           $11.78 | ~$50 |                                |
+| NAT Gateway, ALB, and Amazon VPC   | Two NAT Gateways and an ALB for production; the dashboard groups part of the cost under EC2–Other and VPC. |                                      $32.80* | ~$82–84 |                                |
+| Amazon CloudFront                  | Static delivery from S3 and API routing.                                                                    | $0.00 (Free Tier for 1 TB) | $0.00 (Free Tier for 1 TB) |                                |
+| Amazon S3                          | Static website, media, and logs.                                                                            |                                               ~$2 | ~$2 |                                |
+| Amazon CloudWatch and SNS          | Logs, metrics, alarms, and email alerts.                                                                    |                                          $5.61 | ~$5–6 |                                |
+| AWS Secrets Manager and Amazon ECR | Secrets and container images.                                                                               |                                               ~$2 | ~$3 |                                |
+| **Total monthly cost**       | Current dashboard cost and complete production architecture.                                                |                 **$64.05** | **~$166–184** |                                |
 
 ### 6.2 Cost Optimization Strategy
 
@@ -144,15 +141,15 @@ Static frontend content is stored in **Amazon S3 Static Website** and delivered 
 
 ### 7.1 Risk Matrix
 
-| Risk | Likelihood | Impact |
-| --- | --- | --- |
-| AWS cost exceeds forecast | Medium | Medium |
-| ECS task or container failure | Medium | Medium |
-| Database failure | Low | High |
-| Sensitive-data exposure | Low | Very high |
-| Sudden traffic increase | Medium | Medium |
-| Incomplete logs or alerts | Medium | Medium |
-| Deployment failure | Medium | Medium |
+| Risk                          | Likelihood | Impact    |
+| ----------------------------- | ---------- | --------- |
+| AWS cost exceeds forecast     | Medium     | Medium    |
+| ECS task or container failure | Medium     | Medium    |
+| Database failure              | Low        | High      |
+| Sensitive-data exposure       | Low        | Very high |
+| Sudden traffic increase       | Medium     | Medium    |
+| Incomplete logs or alerts     | Medium     | Medium    |
+| Deployment failure            | Medium     | Medium    |
 
 ### 7.2 Response Plan
 
@@ -168,7 +165,6 @@ Static frontend content is stored in **Amazon S3 Static Website** and delivered 
 
 ### References
 
-- [Team 1 Project Report](/aws-learning-journey-fcaj/images/2-Proposal/BaoCaoNhom1.docx)
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
 - [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/)
 - [AWS Documentation](https://docs.aws.amazon.com/)

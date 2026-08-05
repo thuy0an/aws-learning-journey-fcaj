@@ -5,7 +5,6 @@ weight: 4
 chapter: false
 pre: " <b> 4.4. </b> "
 ---
-
 # Event Report: AWS FCAJ Agent Forge – Deepdive (Day 1)
 
 ### Event Overview
@@ -100,6 +99,7 @@ Day 1 of **AWS FCAJ Agent Forge – Deepdive** gave me a clear view of how to bu
 The mix of theory and examples in process automation, customer support, and software development created a useful foundation for the next workshop sessions.
 
 > **Overall assessment:** The workshop provided a strong foundation in Agentic AI and Amazon Bedrock AgentCore, from concepts and architecture to production deployment, while emphasizing security, scalability, lifecycle management, and tool integration.
+
 ## Event photos
 
 {{< event-image src="images/4-EventParticipated/Event_4_8_pic1.jpg" alt="Event photo 1" >}}
@@ -108,4 +108,4 @@ The mix of theory and examples in process automation, customer support, and soft
 
 {{< event-image src="images/4-EventParticipated/Event_4_8_pic3.jpg" alt="Event photo 3" >}}
 
-{{< event-image src="images/4-EventParticipated/Event_4_8_pic3.jpg" alt="Event photo 3" >}}
+{{< event-image src="images/4-EventParticipated/Event_4_8_pic4.jpg" alt="Event photo 3" >}}

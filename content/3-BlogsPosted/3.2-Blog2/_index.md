@@ -5,10 +5,9 @@ weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-
 # AMAZON RDS AUTOMATION ON SCHEDULE
 
-Hello everyone, I have been learning more about AWS cost optimization and read the AWS Prescriptive Guidance article [Automatically stop and start an Amazon RDS DB instance using AWS Systems Manager Maintenance Windows](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automatically-stop-and-start-an-amazon-rds-db-instance-using-aws-systems-manager-maintenance-windows.html).
+Hello everyone, I have been learning more about AWS cost optimization and read the AWS Prescriptive Guidance article Automatically stop and start an Amazon RDS DB instance using AWS Systems Manager Maintenance Windows.
 
 The article explains how to **automatically start and stop Amazon RDS** on a schedule. For example, a database can run only during business hours and stop at night or on weekends. This is useful for development, testing, and staging environments that do not need to run 24/7.
 
