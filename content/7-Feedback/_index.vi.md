@@ -53,4 +53,6 @@ Em sẵn sàng giới thiệu Bootcamp FCAJ khi các bạn sinh viên quan tâm 
 
 Trong thời gian tới, em mong muốn tiếp tục tham gia các chương trình chuyên sâu của FCAJ về AWS Solution Architecture, DevOps trên AWS để nâng cao kiến thức và kỹ năng. Em cũng hy vọng có cơ hội đồng hành cùng cộng đồng FCAJ trong các hoạt động học thuật và dự án thực tế.
 
-Em xin gửi lời cảm ơn đến các anh chị mentor, Team Admin và Ban tổ chức Bootcamp First Cloud AI Journey đã tận tình hướng dẫn, hỗ trợ và tạo điều kiện để em học tập trong môi trường chuyên nghiệp. Khoảng thời gian tại FCAJ đã giúp em trưởng thành hơn về kiến thức chuyên môn, kỹ năng làm việc và tư duy giải quyết vấn đề.
+Cuối cùng, em xin chân thành cảm ơn các **anh chị mentor**, **Team Admin** và Ban tổ chức **Bootcamp First Cloud AI Journey** đã luôn hướng dẫn, hỗ trợ và đồng hành cùng em trong suốt quá trình thực tập. Trải nghiệm này đã giúp em phát triển thêm về kiến thức chuyên môn, kỹ năng làm việc và tư duy giải quyết vấn đề.
+
+Đặc biệt, em xin gửi lời cảm ơn chân thành đến **Anh Nguyễn Gia Hưng** - Giám đốc Kiến trúc Giải pháp (Head of Solutions Architecture / SA Director) tại AWS Việt Nam, người đã xây dựng và dẫn dắt cộng đồng **FCAJ**, nơi em có cơ hội được học hỏi, phát triển bản thân và tiếp cận nhiều công nghệ mới. Những định hướng, kinh nghiệm thực tiễn và sự hỗ trợ của anh đã giúp em nhìn rõ hơn những điểm cần cải thiện của bản thân, từ đó nỗ lực học hỏi và  hoàn thiện bản thân hơn mỗi ngày.

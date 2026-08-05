@@ -5,7 +5,6 @@ weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-
 # General Feedback on the Internship at Bootcamp First Cloud AI Journey (FCAJ)
 
 ## 1. Learning and Working Environment
@@ -46,6 +45,8 @@ Besides technical knowledge, I improved skills in teamwork, progress management,
 
 In my opinion, the program has a clear learning path and dedicated mentors. In the future, it could include more sharing sessions from Cloud Engineers or Solution Architects working in enterprises, as well as more projects with larger and more realistic scenarios.
 
-I would recommend FCAJ to students interested in Cloud Computing, DevOps, or AI because it offers practical content and strong support from the community. I hope to join advanced FCAJ programs on AWS Solution Architecture, DevOps, or AI on AWS in the future.
+I would recommend **FCAJ** to students interested in Cloud Computing, DevOps, or AI because it offers practical content and strong support from the community. I hope to join advanced **FCAJ** programs on AWS Solution Architecture, DevOps, or AI on AWS in the future.
 
-Finally, I sincerely thank the mentors, Admin Team, and organizers of Bootcamp First Cloud AI Journey for their guidance and support. This experience helped me grow in technical knowledge, work skills, and problem-solving thinking.
+Finally, I sincerely thank the **mentors**, **Admin Team**, and organizers of **Bootcamp First Cloud AI Journey** for their guidance and support. This experience helped me grow in technical knowledge, work skills, and problem-solving thinking.
+
+In particular, I would like to express my sincere gratitude to **Mr. Nguyen Gia Hung**—Head of Solutions Architecture at AWS Vietnam—who founded and leads the **FCAJ** community. This community has provided me with the opportunity to learn, grow, and gain exposure to various new technologies. His guidance, practical insights, and support have helped me clearly identify areas for improvement, motivating me to strive for learning and self-development every day.
