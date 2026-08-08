@@ -5,20 +5,19 @@ weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
 ---
-
 ## Account and tools
 
-| Requirement | Details |
-| --- | --- |
-| AWS account | Personal account in `ap-southeast-1` (Singapore), with MFA enabled |
-| AWS CLI | AWS CLI v2 with a suitable profile or IAM role |
-| Python | Python 3.12 and `pip` for the Django backend |
-| Node.js | Node.js 20+ for building the React/Vite frontend |
-| Docker | Builds and tests Django and React images before pushing to ECR |
-| Git / GitHub | Repository `HaoWasabi/NeonFoodmap`; GitHub Actions uses OIDC for CI/CD |
-| Google Text-to-Speech | API key for guide audio; keep it in GitHub Secrets |
-| PayPal Sandbox | Sandbox details for payment testing; never use real data |
-| Infrastructure file | `SourceProject/neonfoodmap-iam-setup.yaml` |
+| Requirement           | Details                                                                 |
+| --------------------- | ----------------------------------------------------------------------- |
+| AWS account           | Personal account in`ap-southeast-1` (Singapore), with MFA enabled     |
+| AWS CLI               | AWS CLI v2 with a suitable profile or IAM role                          |
+| Python                | Python 3.12 and`pip` for the Django backend                           |
+| Node.js               | Node.js 20+ for building the React/Vite frontend                        |
+| Docker                | Builds and tests Django and React images before pushing to ECR          |
+| Git / GitHub          | Repository`HaoWasabi/NeonFoodmap`; GitHub Actions uses OIDC for CI/CD |
+| Google Text-to-Speech | API key for guide audio; keep it in GitHub Secrets                      |
+| PayPal Sandbox        | Sandbox details for payment testing; never use real data                |
+| Infrastructure file   | `SourceProject/neonfoodmap-iam-setup.yaml`                            |
 
 ## IAM permissions
 
@@ -169,3 +168,14 @@ The CloudFormation template creates three groups: `NeonFoodmap-DevOps-Admins`, `
 {{< event-image src="images/5-Workshop/5.2-Prerequisite/picCloudformation.jpg" alt="CloudFormation template" >}}
 
 {{< event-image src="images/5-Workshop/5.2-Prerequisite/picCompleteStatus.jpg" alt="Completed CloudFormation stack" >}}
+
+## Configuration and secret management during deployment
+
+Use the following configuration convention for the GitHub Environment named production. Do not commit values into the repository, do not include credentials in screenshots, and do not use long-lived AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY on GitHub.
+
+| Name / secret                                                                                                                                                                                                                                               | Storage location                                                                  | Purpose                                                                                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **AWS_REGION**<br />**AWS_ROLE_ARN**<br />**ECS_CLUSTER**<br />**ECS_BACKEND_SERVICE**<br />**ECS_FRONTEND_SERVICE**<br />**ECR_BACKEND_REPOSITORY**<br />**ECR_FRONTEND_REPOSITORY**<br />**VITE_API_URL** | GitHub Environment variables (production)                                         | Deployment metadata rather than secrets.**AWS_ROLE_ARN** specifies the role that GitHub Actions assumes through OIDC; this is not a credential.                                                                                                     |
+| **No AWS credentials** should be stored<br />Only add third-party release tokens when truly needed                                                                                                                                                         | GitHub Environment secrets (production)                                           | Isolate secrets for the Production pipeline only. The standard pipeline uses OIDC, so do not store AWS access keys or application/database secrets on GitHub.                                                                                             |
+| **DJANGO_SECRET_KEY**<br />**DB_HOST**<br />**DB_NAME**<br />**DB_USER**<br />**DB_PASSWORD**<br />**PAYPAL_CLIENT_SECRET**<br />**GOOGLE_TTS_API_KEY**                                                           | AWS Secrets Manager, for example the secret`neonfoodmap/production/application` | Runtime configuration for the application. ECS task definitions reference the secret through`valueFrom`; GitHub Actions do not read these values.                                                                                                       |
+| **GITHUB_TOKEN**                                                                                                                                                                                                                                      | Automatically created by GitHub Actions for each run                              | This is not a deployment secret created by the user and should only have the workflow permissions required. The secret ARN, rotation date, and owner should be recorded in the internal operations log and not included in the public workshop materials. |

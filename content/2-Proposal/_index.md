@@ -20,6 +20,14 @@ This project builds an automated audio-guide platform for visitors to **Vinh Kha
 | AWS infrastructure | VPC across two Availability Zones, ECS Auto Scaling, and RDS Multi-AZ                               |
 | Operations         | Docker, GitHub Actions, Amazon ECR, CloudWatch, and Amazon SNS                                      |
 
+### Project Background
+
+This proposal presents a solution for deploying the NeonFoodMap system on the Amazon Web Services (AWS) platform using a Cloud-Native architecture that meets requirements for scalability, high availability, security, and automated software release. The goal is to build a reusable infrastructure that supports repeatable deployment and standardizes DevOps operations for a Production environment.
+
+NeonFoodMap is a food map website that allows users to search, explore, and evaluate dining locations in real time. The system integrates geographic POI search, GPS positioning, route display, location review, and Text-to-Speech for describing content, improving the experience of discovering food. The near real-time data processing and support for many concurrent users require a flexible infrastructure with high availability and ease of maintenance.
+
+The proposed solution uses Docker and Amazon ECS Fargate; GitHub, GitHub Actions, and OpenID Connect (OIDC) to automate the Build–Test–Deploy workflow; Amazon ECR to store Docker images; Amazon RDS in a Private Subnet to protect data; Amazon S3 for static assets; and Amazon CloudWatch for monitoring. This architecture establishes a unified, secure, and scalable deployment process for subsequent development stages.
+
 ## 2. Objectives
 
 ### 2.1 Project Objectives

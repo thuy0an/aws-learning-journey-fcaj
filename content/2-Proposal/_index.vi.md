@@ -20,6 +20,14 @@ Dự án xây dựng nền tảng thuyết minh tự động dành cho du khách
 | Hạ tầng AWS           | VPC triển khai trên hai Availability Zone, ECS Auto Scaling và RDS Multi-AZ                               |
 | Vận hành              | CI/CD với Docker, GitHub Actions, Amazon ECR, CloudWatch và Amazon SNS                                     |
 
+### Bối cảnh chung về dự án
+
+Trình bày giải pháp triển khai hệ thống NeonFoodMap trên nền tảng Amazon Web Services (AWS) theo kiến trúc Cloud-Native, đáp ứng yêu cầu về khả năng mở rộng, tính sẵn sàng cao, bảo mật và tự động hóa phát hành phần mềm. Mục tiêu là xây dựng hạ tầng có thể tái sử dụng, hỗ trợ triển khai lặp lại và chuẩn hóa quy trình vận hành DevOps cho môi trường Production.
+
+NeonFoodMap là website bản đồ ẩm thực, cho phép người dùng tìm kiếm, khám phá và đánh giá địa điểm ăn uống theo thời gian thực. Hệ thống tích hợp tìm kiếm điểm địa lý (POI), định vị GPS, hiển thị lộ trình, đánh giá địa điểm và Text-to-Speech để phát nội dung mô tả, từ đó nâng cao trải nghiệm khám phá ẩm thực. Đặc điểm xử lý dữ liệu gần thời gian thực và phục vụ nhiều người dùng đồng thời đòi hỏi hạ tầng linh hoạt, có tính sẵn sàng cao và dễ bảo trì.
+
+Giải pháp đề xuất sử dụng Docker và Amazon ECS Fargate; GitHub, GitHub Actions và OpenID Connect (OIDC) để tự động hóa quy trình Build–Test–Deploy; Amazon ECR để lưu trữ Docker image; Amazon RDS trong Private Subnet để bảo vệ dữ liệu; Amazon S3 cho tài nguyên tĩnh và Amazon CloudWatch để giám sát. Kiến trúc này thiết lập một quy trình triển khai thống nhất, an toàn và có thể mở rộng cho các giai đoạn phát triển tiếp theo.
+
 ## 2. Mục tiêu
 
 ### 2.1 Mục tiêu dự án
