@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in four events. Each one provided useful knowledge, practical experience, and memorable moments.
+During my internship, I participated in five events. Each one provided useful knowledge, practical experience, and memorable moments.
 
 ### [Event 1](4.1-Event1/)
 
@@ -33,4 +33,14 @@ During my internship, I participated in four events. Each one provided useful kn
 &emsp;**Event Name:** AWS FCAJ Agent Forge – Deepdive (Day 1)  
 &emsp;**Date & Time:** 09:00, August 1, 2026  
 &emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City  
+&emsp;**Role:** Attendee
+
+### [Event 5](4.5-Event5/)
+
+&emsp;**Event Name:** AWS FCAJ Agent Forge – Deepdive (Day 2)
+
+&emsp;**Date & Time:** 09:00, August 8, 2026
+
+&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
+
 &emsp;**Role:** Attendee

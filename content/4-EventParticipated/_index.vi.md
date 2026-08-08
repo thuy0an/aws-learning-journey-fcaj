@@ -5,7 +5,7 @@ weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
-Trong quá trình thực tập, em đã tham gia bốn sự kiện. Mỗi sự kiện đều mang lại những kiến thức mới, trải nghiệm hữu ích và những kỷ niệm đáng nhớ.
+Trong quá trình thực tập, em đã tham gia năm sự kiện. Mỗi sự kiện đều mang lại những kiến thức mới, trải nghiệm hữu ích và những kỷ niệm đáng nhớ.
 
 ### [Event 1](4.1-Event1/)
 
@@ -40,6 +40,16 @@ Trong quá trình thực tập, em đã tham gia bốn sự kiện. Mỗi sự k
 &emsp;**Tên sự kiện:** AWS FCAJ Agent Forge – Deepdive (Ngày 1)
 
 &emsp;**Thời gian:** 09:00 ngày 01/08/2026
+
+&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+
+&emsp;**Vai trò trong sự kiện:** Người tham dự
+
+### [Event 5](4.5-Event5/)
+
+&emsp;**Tên sự kiện:** AWS FCAJ Agent Forge – Deepdive (Ngày 2)
+
+&emsp;**Thời gian:** 09:00 ngày 08/08/2026
 
 &emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
 
