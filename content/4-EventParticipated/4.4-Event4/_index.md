@@ -22,7 +22,7 @@ This was an advanced **L300** workshop held with the First Cloud AI Journey (FCA
 - **Nghĩa** — Senior Speaker who led the session and explained Agentic AI foundations and enterprise architecture.
 - **Hải Anh** — Hands-on lab host who guided project setup, dependency installation, and Agent testing.
 
-### Workshop Format
+### Workshop
 
 The workshop is a three-day series that moves from foundations to production deployment with Amazon Bedrock AgentCore.
 

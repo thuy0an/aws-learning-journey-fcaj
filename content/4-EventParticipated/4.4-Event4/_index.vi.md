@@ -22,7 +22,7 @@ Sự kiện là buổi workshop chuyên sâu cấp độ nâng cao (**L300 – A
 - **Anh Nghĩa:** Senior Speaker, điều phối chương trình và chia sẻ khung lý thuyết nền tảng về Agentic AI cùng kiến trúc doanh nghiệp.
 - **Anh Hải Anh:** Host phần hands-on lab, hướng dẫn cấu hình dự án, cài đặt dependency và kiểm thử Agent.
 
-### Định dạng workshop
+### Workshop
 
 Đây là chuỗi workshop kéo dài ba ngày, được thiết kế theo lộ trình từ kiến thức nền tảng đến triển khai Agent production với Amazon Bedrock AgentCore.
 
